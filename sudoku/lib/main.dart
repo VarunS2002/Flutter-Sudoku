@@ -10,6 +10,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  // #3880ff
   static MaterialColor primaryColor = MaterialColor(4281893119, {
     50: Color(0xff92b9ff),
     100: Color(0xff88b3ff),
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     800: Color(0xff275ab2),
     900: Color(0xff224d99)
   });
+  // #eb445a
   static MaterialColor secondaryColor = MaterialColor(4293608538, {
     50: Color(0xfff498a4),
     100: Color(0xfff38f9c),
@@ -34,28 +36,6 @@ class MyApp extends StatelessWidget {
     800: Color(0xffa4303f),
     900: Color(0xff8d2936)
   });
-
-  static MaterialColor createMaterialColor(Color color) {
-    List strengths = <double>[.05];
-    Map swatch = <int, Color>{};
-    final int r = color.red, g = color.green, b = color.blue;
-
-    for (int i = 1; i < 10; i++) {
-      strengths.add(0.1 * i);
-    }
-    strengths.forEach((strength) {
-      final double ds = 0.5 - strength;
-      swatch[(strength * 1000).round()] = Color.fromRGBO(
-        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-        1,
-      );
-    });
-    print(color.value);
-    print(swatch);
-    return MaterialColor(color.value, swatch);
-  }
 
   // This widget is the root of your application.
   @override
