@@ -26,7 +26,7 @@ class MaterialColorGenerator {
 
 void main() {
   // ignore: unused_local_variable
-  MaterialColor blue = MaterialColorGenerator.createMaterialColor(Color(0xFF3880FF));
+  MaterialColor blue = MaterialColorGenerator.createMaterialColor(Color(0xFF3880FF)); // 3880ff
   // ignore: unused_local_variable
-  MaterialColor red = MaterialColorGenerator.createMaterialColor(Color(0xFFEB445A));
+  MaterialColor red = MaterialColorGenerator.createMaterialColor(Color(0xFFEB445A)); // eb445a
 }
