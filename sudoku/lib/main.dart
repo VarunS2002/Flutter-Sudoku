@@ -185,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
           shape: RoundedRectangleBorder(
               side: BorderSide(
                 color: Colors.black,
-                width: 0.5,
+                width: 1,
                 style: BorderStyle.solid,
               ),
               borderRadius: BorderRadius.circular(0)),
@@ -253,8 +253,8 @@ class _MyHomePageState extends State<MyHomePage> {
       onAction: onSpeedDialAction,
       controller: speedDialController,
       isDismissible: true,
-      backgroundColor: Colors.white,
-      foregroundColor: MyApp.primaryColor,
+      backgroundColor: MyApp.primaryColor,
+      foregroundColor: Colors.white,
     );
   }
 
