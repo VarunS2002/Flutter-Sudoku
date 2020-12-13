@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
-import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:sudoku/Alerts.dart';
 import 'Sudoku.dart';
 
 void main() {
@@ -92,64 +92,14 @@ class _MyHomePageState extends State<MyHomePage> {
       isButtonDisabled = !isButtonDisabled;
       gameOver = true;
       Timer(Duration(milliseconds: 500), () {
-        alertGameOver();
+        showDialog<void>(context: context, builder: (_) => AlertGameOver()).whenComplete(() {
+          if (AlertGameOver.newGame) {
+            newGame();
+            AlertGameOver.newGame = false;
+          }
+        });
       });
     }
-  }
-
-  Future<bool> alertExit() async {
-    return (await showAnimatedDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (BuildContext context) {
-            return ClassicGeneralDialogWidget(
-              titleText: 'Exit Game',
-              contentText: 'Are you sure you want to exit the game ?',
-              positiveText: 'No',
-              positiveTextStyle: TextStyle(color: MyApp.primaryColor),
-              onPositiveClick: () {
-                Navigator.of(context).pop(false);
-              },
-              negativeText: 'Yes',
-              negativeTextStyle: TextStyle(color: MyApp.primaryColor),
-              onNegativeClick: () {
-                Navigator.of(context).pop(true);
-              },
-            );
-          },
-          animationType: DialogTransitionType.sizeFade,
-          curve: Curves.fastOutSlowIn,
-          duration: Duration(milliseconds: 250),
-        )) ??
-        false;
-  }
-
-  Future<bool> alertGameOver() async {
-    return (await showAnimatedDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (BuildContext context) {
-            return ClassicGeneralDialogWidget(
-              titleText: 'Game Over',
-              contentText: 'You successfully solved the Sudoku',
-              positiveText: 'Ok',
-              positiveTextStyle: TextStyle(color: MyApp.primaryColor),
-              onPositiveClick: () {
-                Navigator.of(context).pop(false);
-              },
-              negativeText: 'New Game',
-              negativeTextStyle: TextStyle(color: MyApp.primaryColor),
-              onNegativeClick: () {
-                Navigator.of(context).pop(true);
-                newGame();
-              },
-            );
-          },
-          animationType: DialogTransitionType.sizeFade,
-          curve: Curves.fastOutSlowIn,
-          duration: Duration(milliseconds: 250),
-        )) ??
-        false;
   }
 
   // ignore: missing_return
@@ -346,7 +296,10 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return new WillPopScope(
-        onWillPop: alertExit,
+        onWillPop: () async {
+          showDialog<void>(context: context, builder: (_) => AlertExit());
+          return true;
+        },
         child: new Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(

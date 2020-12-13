@@ -26,9 +26,7 @@ dependencies:
 
   # Stacked Floating Action Buttons
   flutter_speed_dial_material_design: ^2.0.0
-  # Animated Alert Dialogue
-  flutter_animated_dialog: ^1.2.0
-  # Launcher Icon
+  # Generating Mobile Launcher Icons
   flutter_launcher_icons: ^0.8.0
 
 
