@@ -26,14 +26,6 @@ dependencies:
 
   # Stacked Floating Action Buttons
   flutter_speed_dial_material_design: ^2.0.0
-  # Generating Mobile Launcher Icons
-  flutter_launcher_icons: ^0.8.0
-
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/icon/icon.png"
-
 
 dev_dependencies:
   flutter_test:
