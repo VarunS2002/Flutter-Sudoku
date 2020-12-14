@@ -4,6 +4,7 @@
     <application
             android:label="Sudoku"
             android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
             android:installLocation="auto"
             android:allowBackup="true"
             android:isGame="true"
