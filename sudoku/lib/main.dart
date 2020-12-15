@@ -299,7 +299,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return new WillPopScope(
         onWillPop: () async {
-          showDialog<void>(context: context, builder: (_) => AlertExit());
+          if (kIsWeb){
+            return false;
+          }
+          else {
+            showDialog<void>(context: context, builder: (_) => AlertExit());
+          }
           return true;
         },
         child: new Scaffold(
