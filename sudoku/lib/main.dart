@@ -189,7 +189,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: BorderStyle.solid,
               ),
               borderRadius: BorderRadius.circular(0)),
-          child: Text(game[k][i] != 0 ? game[k][i].toString() : ' '),
+          child: Text(game[k][i] != 0 ? game[k][i].toString() : ' ',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
       );
     }
