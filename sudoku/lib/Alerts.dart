@@ -13,7 +13,7 @@ class AlertGameOver extends StatelessWidget {
       ),
       title: Text('Game Over'),
       content:
-      Text('Are you sure you want to exit the game ?'),
+      Text('You successfully solved the Sudoku'),
       actions: [
         FlatButton(
           textColor: MyApp.primaryColor,
