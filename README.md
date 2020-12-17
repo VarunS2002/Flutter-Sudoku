@@ -128,6 +128,8 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 ## Note:
 
+- [flutter_speed_dial_material_design](https://pub.dev/packages/flutter_speed_dial_material_design) is used for Stacked Floating Action Buttons
+  
 - If you face any issue then feel free to open an issue on GitHub
 
 ## Screenshots:
