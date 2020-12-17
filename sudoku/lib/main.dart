@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void newGame([String difficulty = 'easy']) {
     setState(() {
-      setGame('easy');
+      setGame(difficulty);
       isButtonDisabled =
           isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = false;
