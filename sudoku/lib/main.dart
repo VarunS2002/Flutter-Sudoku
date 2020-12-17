@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
     800: Color(0xff275ab2),
     900: Color(0xff224d99)
   });
+
   // #eb445a
   static MaterialColor secondaryColor = MaterialColor(4293608538, {
     50: Color(0xfff498a4),
@@ -92,7 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
       isButtonDisabled = !isButtonDisabled;
       gameOver = true;
       Timer(Duration(milliseconds: 500), () {
-        showDialog<void>(context: context, builder: (_) => AlertGameOver()).whenComplete(() {
+        showDialog<void>(
+                context: context,
+                builder: (_) => AlertGameOver(),
+                barrierDismissible: false)
+            .whenComplete(() {
           if (AlertGameOver.newGame) {
             newGame();
             AlertGameOver.newGame = false;
@@ -124,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void newGame() {
+  void newGame([String difficulty = 'easy']) {
     setState(() {
       setGame('easy');
       isButtonDisabled =
@@ -189,7 +194,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: BorderStyle.solid,
               ),
               borderRadius: BorderRadius.circular(0)),
-          child: Text(game[k][i] != 0 ? game[k][i].toString() : ' ',
+          child: Text(
+            game[k][i] != 0 ? game[k][i].toString() : ' ',
             style: TextStyle(fontSize: 16),
           ),
         ),
@@ -299,10 +305,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return new WillPopScope(
         onWillPop: () async {
-          if (kIsWeb){
+          if (kIsWeb) {
             return false;
-          }
-          else {
+          } else {
             showDialog<void>(context: context, builder: (_) => AlertExit());
           }
           return true;
