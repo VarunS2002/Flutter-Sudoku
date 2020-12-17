@@ -8,12 +8,9 @@ class AlertGameOver extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       title: Text('Game Over'),
-      content:
-      Text('You successfully solved the Sudoku'),
+      content: Text('You successfully solved the Sudoku'),
       actions: [
         FlatButton(
           textColor: MyApp.primaryColor,
@@ -40,12 +37,9 @@ class AlertExit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       title: Text('Exit Game'),
-      content:
-      Text('Are you sure you want to exit the game ?'),
+      content: Text('Are you sure you want to exit the game ?'),
       actions: [
         FlatButton(
           textColor: MyApp.primaryColor,
@@ -64,5 +58,4 @@ class AlertExit extends StatelessWidget {
       ],
     );
   }
-
 }
