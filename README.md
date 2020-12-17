@@ -35,13 +35,13 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 - For Exporting to Android:
 
-    - Android Studio/IntelliJ IDEA with Flutter Plugin (recommeded)
+    - [Android Studio](https://developer.android.com/studio#downloads) 3.0+ / [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) 2017.1+ with [Flutter Plugin](https://plugins.jetbrains.com/plugin/9212-flutter) and [Dart Plugin](https://plugins.jetbrains.com/plugin/6351-dart) (recommeded)
 
-    - Android SDK (30 recommended)
+    - Android SDK from Android Studio or IntelliJ IDEA (API Level 30 recommended)
 
-    - Java SE JDK (8 recommended)
+    - [Java SE JDK](https://www.oracle.com/in/java/technologies/javase-downloads.html) (v8 recommended)
 
-    - Gradle
+    - [Gradle](https://gradle.org/releases/)
 
     - Set ANDROID_HOME and ANDROID_SDK_ROOT variables
 
@@ -129,7 +129,13 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 ## Note:
 
 - [flutter_speed_dial_material_design](https://pub.dev/packages/flutter_speed_dial_material_design) is used for Stacked Floating Action Buttons
-  
+
+- Referred Algorithms:
+      
+    - [Sudoku Generation Algorithm](https://www.geeksforgeeks.org/program-sudoku-generator/) in Java
+    
+    - [Sudoku Generation and Solving Algorithm](https://www.101computing.net/sudoku-generator-algorithm/) in Python
+      
 - If you face any issue then feel free to open an issue on GitHub
 
 ## Screenshots:
