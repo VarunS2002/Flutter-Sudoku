@@ -196,6 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
               borderRadius: BorderRadius.circular(0)),
           child: Text(
             game[k][i] != 0 ? game[k][i].toString() : ' ',
+            textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16),
           ),
         ),
