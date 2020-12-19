@@ -93,15 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
       isButtonDisabled = !isButtonDisabled;
       gameOver = true;
       Timer(Duration(milliseconds: 500), () {
-        showDialog<void>(
-                context: context,
-                builder: (_) => AlertGameOver())
+        showDialog<void>(context: context, builder: (_) => AlertGameOver())
             .whenComplete(() {
           if (AlertGameOver.newGame) {
             newGame();
             AlertGameOver.newGame = false;
-          }
-          else if (AlertGameOver.restartGame) {
+          } else if (AlertGameOver.restartGame) {
             restartGame();
             AlertGameOver.restartGame = false;
           }
