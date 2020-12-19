@@ -11,7 +11,7 @@
 -->
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
->[![APK: v1.0.0](https://img.shields.io/badge/APK-v1.0.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/1.0.0/Sudoku_1.0.0.apk)
+>[![APK: v1.1.0](https://img.shields.io/badge/APK-v1.1.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/1.1.0/Sudoku_1.1.0.apk)
 ![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
 >[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -157,4 +157,4 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 - Game Over Alert Box:<br><br>
 
-  ![Result](https://i.imgur.com/afe5lAK.jpg)
+  ![Result](https://i.imgur.com/annx3QB.jpg)
