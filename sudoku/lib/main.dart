@@ -95,8 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Timer(Duration(milliseconds: 500), () {
         showDialog<void>(
                 context: context,
-                builder: (_) => AlertGameOver(),
-                barrierDismissible: false)
+                builder: (_) => AlertGameOver())
             .whenComplete(() {
           if (AlertGameOver.newGame) {
             newGame();
@@ -135,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void newGame([String difficulty = 'easy']) {
     setState(() {
-      setGame(difficulty);
+      setGame('test');
       isButtonDisabled =
           isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = false;
