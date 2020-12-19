@@ -4,6 +4,7 @@ import 'main.dart';
 
 class AlertGameOver extends StatelessWidget {
   static bool newGame = false;
+  static bool restartGame = false;
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +17,17 @@ class AlertGameOver extends StatelessWidget {
           textColor: MyApp.primaryColor,
           onPressed: () {
             Navigator.pop(context);
-            newGame = true;
+            restartGame = true;
           },
-          child: Text('New Game'),
+          child: Text('Restart Game'),
         ),
         FlatButton(
           textColor: MyApp.primaryColor,
           onPressed: () {
-            newGame = false;
             Navigator.pop(context);
+            newGame = true;
           },
-          child: Text('Ok'),
+          child: Text('New Game'),
         ),
       ],
     );
@@ -44,16 +45,16 @@ class AlertExit extends StatelessWidget {
         FlatButton(
           textColor: MyApp.primaryColor,
           onPressed: () {
-            SystemNavigator.pop();
+            Navigator.pop(context);
           },
-          child: Text('Yes'),
+          child: Text('No'),
         ),
         FlatButton(
           textColor: MyApp.primaryColor,
           onPressed: () {
-            Navigator.pop(context);
+            SystemNavigator.pop();
           },
-          child: Text('No'),
+          child: Text('Yes'),
         ),
       ],
     );

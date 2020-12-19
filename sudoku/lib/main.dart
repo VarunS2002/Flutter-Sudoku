@@ -102,6 +102,10 @@ class _MyHomePageState extends State<MyHomePage> {
             newGame();
             AlertGameOver.newGame = false;
           }
+          else if (AlertGameOver.restartGame) {
+            restartGame();
+            AlertGameOver.restartGame = false;
+          }
         });
       });
     }
