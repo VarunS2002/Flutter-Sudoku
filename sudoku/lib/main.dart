@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:sudoku/Alerts.dart';
 import 'Sudoku.dart';
@@ -83,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool gameOver = false;
   int timesCalled = 0;
   bool isButtonDisabled = false;
+  bool isFABDisabled = false;
   List<List<List<int>>> gameList;
   List<List<int>> game;
   List<List<int>> gameCopy;
@@ -93,8 +95,15 @@ class _MyHomePageState extends State<MyHomePage> {
       isButtonDisabled = !isButtonDisabled;
       gameOver = true;
       Timer(Duration(milliseconds: 500), () {
-        showDialog<void>(context: context, builder: (_) => AlertGameOver())
-            .whenComplete(() {
+        setState(() {
+          isFABDisabled = true;
+        });
+        showAnimatedDialog<void>(
+            animationType: DialogTransitionType.fadeScale,
+            barrierDismissible: true,
+            duration: Duration(milliseconds: 350),
+            context: context,
+            builder: (_) => AlertGameOver()).whenComplete(() {
           if (AlertGameOver.newGame) {
             newGame();
             AlertGameOver.newGame = false;
@@ -102,6 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
             restartGame();
             AlertGameOver.restartGame = false;
           }
+          setState(() {
+            isFABDisabled = false;
+          });
         });
       });
     }
@@ -181,7 +193,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: FlatButton(
           onPressed: isButtonDisabled || gameCopy[k][i] != 0
               ? null
-              : () => callback([k, i]),
+              : () {
+                  setState(() {
+                    isFABDisabled = true;
+                  });
+                  showAnimatedDialog<void>(
+                      animationType: DialogTransitionType.fade,
+                      barrierDismissible: true,
+                      duration: Duration(milliseconds: 300),
+                      context: context,
+                      builder: (_) => AlertNumbersState()).whenComplete(() {
+                    callback([k, i], AlertNumbersState.number);
+                    AlertNumbersState.number = null;
+                    setState(() {
+                      isFABDisabled = false;
+                    });
+                  });
+                },
           color: buttonColor(k, i),
           textColor: game[k][i] == 0 ? buttonColor(k, i) : MyApp.secondaryColor,
           disabledColor: buttonColor(k, i),
@@ -224,14 +252,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return rowList;
   }
 
-  void callback(List<int> index) {
+  void callback(List<int> index, int number) {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      game[index[0]][index[1]] = (game[index[0]][index[1]] % 9) + 1;
+      if (number == null) {
+        return;
+      }
+      game[index[0]][index[1]] = number;
       checkResult();
     });
   }
@@ -309,7 +340,19 @@ class _MyHomePageState extends State<MyHomePage> {
           if (kIsWeb) {
             return false;
           } else {
-            showDialog<void>(context: context, builder: (_) => AlertExit());
+            setState(() {
+              isFABDisabled = true;
+            });
+            showAnimatedDialog<void>(
+                animationType: DialogTransitionType.fadeScale,
+                barrierDismissible: true,
+                duration: Duration(milliseconds: 350),
+                context: context,
+                builder: (_) => AlertExit()).whenComplete(() {
+              setState(() {
+                isFABDisabled = false;
+              });
+            });
           }
           return true;
         },
@@ -344,7 +387,14 @@ class _MyHomePageState extends State<MyHomePage> {
               children: createRows(),
             ),
           ),
-          floatingActionButton: buildFloatingActionButton(),
+          floatingActionButton: !isFABDisabled
+              ? buildFloatingActionButton()
+              : FloatingActionButton(
+                  onPressed: null,
+                  child: Icon(Icons.menu_rounded),
+                  foregroundColor: Colors.white,
+                  backgroundColor: MyApp.primaryColor,
+                ),
         ));
   }
 }

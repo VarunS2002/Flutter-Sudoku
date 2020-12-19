@@ -60,3 +60,87 @@ class AlertExit extends StatelessWidget {
     );
   }
 }
+
+class AlertNumbersState extends StatefulWidget {
+  @override
+  AlertNumbers createState() => AlertNumbers();
+
+  static get number {
+    return AlertNumbers.number;
+  }
+
+  static set number(int number) {
+    AlertNumbers.number = number;
+  }
+}
+
+class AlertNumbers extends State<AlertNumbersState> {
+  static int number;
+  int numberSelected;
+  static final List<int> numberList1 = [1, 2, 3];
+  static final List<int> numberList2 = [4, 5, 6];
+  static final List<int> numberList3 = [7, 8, 9];
+
+  List<SizedBox> createButtons(List<int> numberList) {
+    return <SizedBox>[
+      for (int numbers in numberList)
+        SizedBox(
+          width: 38,
+          height: 38,
+          child: FlatButton(
+            onPressed: () => {
+              setState(() {
+                numberSelected = numbers;
+                number = numberSelected;
+                Navigator.pop(context);
+              })
+            },
+            color: Colors.white,
+            textColor: MyApp.primaryColor,
+            highlightColor: Colors.blueAccent,
+            shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.black,
+                  width: 1,
+                  style: BorderStyle.solid,
+                ),
+                borderRadius: BorderRadius.circular(5)),
+            child: Text(
+              numbers.toString(),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        )
+    ];
+  }
+
+  Row oneRow(List<int> numberList) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: createButtons(numberList),
+    );
+  }
+
+  List<Row> createRows() {
+    List<List> numberLists = [numberList1, numberList2, numberList3];
+    List<Row> rowList = new List<Row>(3);
+    for (var i = 0; i <= 2; i++) {
+      rowList[i] = oneRow(numberLists[i]);
+    }
+    return rowList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        title: Center(child: Text('Choose a Number')),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: createRows(),
+        ));
+  }
+}
