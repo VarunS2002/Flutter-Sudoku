@@ -34,6 +34,70 @@ class AlertGameOver extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
+class AlertDifficultyState extends StatefulWidget {
+  String currentDifficultyLevel;
+
+  AlertDifficultyState(String currentDifficultyLevel) {
+    this.currentDifficultyLevel = currentDifficultyLevel;
+  }
+
+  @override
+  AlertDifficulty createState() => AlertDifficulty(this.currentDifficultyLevel);
+
+  static get difficulty {
+    return AlertDifficulty.difficulty;
+  }
+
+  static set difficulty(String level) {
+    AlertDifficulty.difficulty = level;
+  }
+}
+
+class AlertDifficulty extends State<AlertDifficultyState> {
+  static String difficulty;
+  static final List<String> difficulties = [
+    'beginner',
+    'easy',
+    'medium',
+    'hard'
+  ];
+  String currentDifficultyLevel;
+
+  AlertDifficulty(String currentDifficultyLevel) {
+    this.currentDifficultyLevel = currentDifficultyLevel;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SimpleDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      title: Center(child: Text('Select Difficulty Level')),
+      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      children: <Widget>[
+        for (String level in difficulties)
+          SimpleDialogOption(
+            onPressed: () {
+              if (level != this.currentDifficultyLevel) {
+                setState(() {
+                  difficulty = level;
+                });
+              }
+              Navigator.pop(context);
+            },
+            child: Text(level[0].toUpperCase() + level.substring(1),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 15,
+                    color: level == this.currentDifficultyLevel
+                        ? MyApp.primaryColor
+                        : Colors.black)),
+          ),
+      ],
+    );
+  }
+}
+
 class AlertExit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

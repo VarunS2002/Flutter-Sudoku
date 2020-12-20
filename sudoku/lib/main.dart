@@ -89,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<List<int>> game;
   List<List<int>> gameCopy;
   List<List<int>> gameSolved;
+  static String currentDifficultyLevel = 'easy';
 
   void checkResult() {
     if (game.toString() == gameSolved.toString()) {
@@ -282,6 +283,9 @@ class _MyHomePageState extends State<MyHomePage> {
       SpeedDialAction(
           child: Icon(Icons.lightbulb_outline_rounded),
           label: Text('Show Solution', style: customStyle)),
+      SpeedDialAction(
+          child: Icon(Icons.build_outlined),
+          label: Text('Set Difficulty', style: customStyle)),
     ];
 
     return SpeedDialFloatingActionButton(
@@ -312,7 +316,7 @@ class _MyHomePageState extends State<MyHomePage> {
         {
           speedDialController.unfold();
           Timer(Duration(milliseconds: 300), () {
-            newGame();
+            newGame(currentDifficultyLevel);
           });
         }
         break;
@@ -321,6 +325,35 @@ class _MyHomePageState extends State<MyHomePage> {
           speedDialController.unfold();
           Timer(Duration(milliseconds: 300), () {
             showSolution();
+          });
+        }
+        break;
+      case 3:
+        {
+          speedDialController.unfold();
+          Timer(Duration(milliseconds: 300), () {
+            setState(() {
+              isFABDisabled = true;
+            });
+            showAnimatedDialog<void>(
+                    animationType: DialogTransitionType.fadeScale,
+                    barrierDismissible: true,
+                    duration: Duration(milliseconds: 350),
+                    context: context,
+                    builder: (_) =>
+                        AlertDifficultyState(currentDifficultyLevel))
+                .whenComplete(() {
+              if (AlertDifficultyState.difficulty != null) {
+                Timer(Duration(milliseconds: 300), () {
+                  newGame(AlertDifficultyState.difficulty);
+                  currentDifficultyLevel = AlertDifficultyState.difficulty;
+                  AlertDifficultyState.difficulty = null;
+                });
+              }
+              setState(() {
+                isFABDisabled = false;
+              });
+            });
           });
         }
         break;
