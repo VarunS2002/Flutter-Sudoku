@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:sudoku/Alerts.dart';
@@ -89,7 +90,31 @@ class _MyHomePageState extends State<MyHomePage> {
   List<List<int>> game;
   List<List<int>> gameCopy;
   List<List<int>> gameSolved;
-  static String currentDifficultyLevel = 'easy';
+  static String currentDifficultyLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    getPrefs().whenComplete(() {
+      if (currentDifficultyLevel == null) {
+        currentDifficultyLevel = 'easy';
+        setPrefs();
+      }
+      newGame(currentDifficultyLevel);
+    });
+  }
+
+  Future<void> getPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      currentDifficultyLevel = prefs.getString('currentDifficultyLevel');
+    });
+  }
+
+  setPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('currentDifficultyLevel', currentDifficultyLevel);
+  }
 
   void checkResult() {
     if (game.toString() == gameSolved.toString()) {
@@ -126,11 +151,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return [object.newSudoku, object.newSudokuSolved];
   }
 
-  void setGame([String difficulty = 'easy']) {
-    gameList = getNewGame(difficulty);
-    game = gameList[0];
-    gameCopy = Sudoku.copyGrid(game);
-    gameSolved = gameList[1];
+  void setGame(int mode, [String difficulty = 'easy']) {
+    if (mode == 1) {
+      game = new List.generate(9, (i) => [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+      gameCopy = Sudoku.copyGrid(game);
+      gameSolved = Sudoku.copyGrid(game);
+    } else {
+      gameList = getNewGame(difficulty);
+      game = gameList[0];
+      gameCopy = Sudoku.copyGrid(game);
+      gameSolved = gameList[1];
+    }
   }
 
   void showSolution() {
@@ -144,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void newGame([String difficulty = 'easy']) {
     setState(() {
-      setGame(difficulty);
+      setGame(2, difficulty);
       isButtonDisabled =
           isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = false;
@@ -176,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<SizedBox> createButtons() {
     if (firstRun) {
-      setGame('easy');
+      setGame(1);
       firstRun = false;
     }
     MaterialColor emptyColor;
@@ -348,6 +379,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   newGame(AlertDifficultyState.difficulty);
                   currentDifficultyLevel = AlertDifficultyState.difficulty;
                   AlertDifficultyState.difficulty = null;
+                  setPrefs();
                 });
               }
               setState(() {

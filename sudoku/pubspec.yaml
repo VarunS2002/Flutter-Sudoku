@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Saving Preferences Locally
+  shared_preferences: ^0.5.12+4
+
   # Stacked Floating Action Buttons
   flutter_speed_dial_material_design: ^2.0.0
 
