@@ -20,6 +20,7 @@ class MaterialColorGenerator {
     });
     print(color.value);
     print(swatch);
+    print("MaterialColor(${color.value},$swatch);");
     return MaterialColor(color.value, swatch);
   }
 }
@@ -29,4 +30,10 @@ void main() {
   MaterialColor blue = MaterialColorGenerator.createMaterialColor(Color(0xFF3880FF)); // 3880ff
   // ignore: unused_local_variable
   MaterialColor red = MaterialColorGenerator.createMaterialColor(Color(0xFFEB445A)); // eb445a
+  // ignore: unused_local_variable
+  MaterialColor dark = MaterialColorGenerator.createMaterialColor(Color(0xFF121212)); // 121212
+  // ignore: unused_local_variable
+  MaterialColor light = MaterialColorGenerator.createMaterialColor(Color(0xFFFFFFFF)); // FFFFFF
+  // ignore: unused_local_variable
+  MaterialColor grey = MaterialColorGenerator.createMaterialColor(Color(0xFF303030)); // 303030
 }
