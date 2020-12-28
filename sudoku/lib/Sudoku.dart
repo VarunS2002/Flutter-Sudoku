@@ -1,4 +1,4 @@
-import 'Solve.dart';
+import 'package:sudoku/Solve.dart';
 
 class Sudoku {
   int N = 9;

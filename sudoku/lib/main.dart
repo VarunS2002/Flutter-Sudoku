@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:sudoku/Alerts.dart';
-import 'Sudoku.dart';
+import 'package:sudoku/Sudoku.dart';
 
 void main() {
   runApp(MyApp());

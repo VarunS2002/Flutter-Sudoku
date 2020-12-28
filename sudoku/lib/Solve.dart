@@ -1,4 +1,4 @@
-import 'Sudoku.dart';
+import 'package:sudoku/Sudoku.dart';
 
 class Solve {
   List<List<int>> solvedGrid;
