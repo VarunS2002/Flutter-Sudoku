@@ -9,28 +9,33 @@ class Sudoku {
   List<List<int>> matSolved = new List.generate(
       9, (i) => [null, null, null, null, null, null, null, null, null]);
 
-  Sudoku([String difficulty='easy']) {
-    switch (difficulty){
-      case 'test' : {
-        this.K = 2;
-      }
-      break;
-      case 'beginner' : {
-        this.K = 18;
-      }
-      break;
-      case 'easy' : {
-        this.K = 27;
-      }
-      break;
-      case 'medium' : {
-        this.K = 36;
-      }
-      break;
-      case 'hard' : {
-        this.K = 54;
-      }
-      break;
+  Sudoku([String difficulty = 'easy']) {
+    switch (difficulty) {
+      case 'test':
+        {
+          this.K = 2;
+        }
+        break;
+      case 'beginner':
+        {
+          this.K = 18;
+        }
+        break;
+      case 'easy':
+        {
+          this.K = 27;
+        }
+        break;
+      case 'medium':
+        {
+          this.K = 36;
+        }
+        break;
+      case 'hard':
+        {
+          this.K = 54;
+        }
+        break;
     }
     fillValues();
   }
@@ -38,8 +43,8 @@ class Sudoku {
   static List<List<int>> copyGrid(List<List<int>> grid) {
     List<List<int>> copiedGrid = new List.generate(
         9, (i) => [null, null, null, null, null, null, null, null, null]);
-    for (int i=0;i<9;i++) {
-      for (int j=0;j<9;j++) {
+    for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 9; j++) {
         copiedGrid[i][j] = grid[i][j];
       }
     }
@@ -90,8 +95,8 @@ class Sudoku {
 
   int randomGeneratorK() {
     List<int> numberList = new List<int>(81);
-    for (int i=0;i<N*N;i++){
-      numberList[i]=i;
+    for (int i = 0; i < N * N; i++) {
+      numberList[i] = i;
     }
     numberList.shuffle();
     return numberList[0];
@@ -160,18 +165,18 @@ class Sudoku {
   }
 
   void removeKDigits() {
-    while (K>0) {
-      int row = randomGenerator()-1;
-      int col = randomGenerator()-1;
-      while (mat[row][col]==0) {
-        row = randomGenerator()-1;
-        col = randomGenerator()-1;
+    while (K > 0) {
+      int row = randomGenerator() - 1;
+      int col = randomGenerator() - 1;
+      while (mat[row][col] == 0) {
+        row = randomGenerator() - 1;
+        col = randomGenerator() - 1;
       }
       int backup = mat[row][col];
-      mat[row][col]=0;
+      mat[row][col] = 0;
       List<List<int>> copy = copyGrid(mat);
       Solve test = Solve(copy);
-      if (test.noOfSolutions!=1) {
+      if (test.noOfSolutions != 1) {
         mat[row][col] = backup;
       }
       K--;
