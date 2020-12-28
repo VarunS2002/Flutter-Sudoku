@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
+import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
 import 'package:sudoku/Sudoku.dart';
 
@@ -12,34 +13,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // #3880ff
-  static MaterialColor primaryColor = MaterialColor(4281893119, {
-    50: Color(0xff92b9ff),
-    100: Color(0xff88b3ff),
-    200: Color(0xff74a6ff),
-    300: Color(0xff6099ff),
-    400: Color(0xff4c8dff),
-    500: Color(0xff3880ff),
-    600: Color(0xff3273e5),
-    700: Color(0xff2d66cc),
-    800: Color(0xff275ab2),
-    900: Color(0xff224d99)
-  });
-
-  // #eb445a
-  static MaterialColor secondaryColor = MaterialColor(4293608538, {
-    50: Color(0xfff498a4),
-    100: Color(0xfff38f9c),
-    200: Color(0xfff17c8c),
-    300: Color(0xffef697b),
-    400: Color(0xffed576a),
-    500: Color(0xffeb445a),
-    600: Color(0xffd33d51),
-    700: Color(0xffbc3648),
-    800: Color(0xffa4303f),
-    900: Color(0xff8d2936)
-  });
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -55,7 +28,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: primaryColor,
+        primarySwatch: Styles.primaryColor,
       ),
       home: MyHomePage(title: 'Sudoku'),
     );
@@ -91,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<List<int>> gameCopy;
   List<List<int>> gameSolved;
   static String currentDifficultyLevel;
+  static String currentTheme;
 
   @override
   void initState() {
@@ -98,9 +72,14 @@ class _MyHomePageState extends State<MyHomePage> {
     getPrefs().whenComplete(() {
       if (currentDifficultyLevel == null) {
         currentDifficultyLevel = 'easy';
-        setPrefs();
+        setPrefs('currentDifficultyLevel');
+      }
+      if (currentTheme == null) {
+        currentTheme = 'dark';
+        setPrefs('currentTheme');
       }
       newGame(currentDifficultyLevel);
+      changeTheme('set');
     });
   }
 
@@ -108,12 +87,52 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       currentDifficultyLevel = prefs.getString('currentDifficultyLevel');
+      currentTheme = prefs.getString('currentTheme');
     });
   }
 
-  setPrefs() async {
+  setPrefs(String property) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('currentDifficultyLevel', currentDifficultyLevel);
+    if (property == 'currentDifficultyLevel') {
+      prefs.setString('currentDifficultyLevel', currentDifficultyLevel);
+    } else if (property == 'currentTheme') {
+      prefs.setString('currentTheme', currentTheme);
+    }
+  }
+
+  void changeTheme(String mode) {
+    setState(() {
+      if (currentTheme == 'light') {
+        if (mode == 'switch') {
+          Styles.bg = Styles.dark;
+          Styles.bg_2 = Styles.grey;
+          Styles.fg = Styles.light;
+          currentTheme = 'dark';
+        } else if (mode == 'set') {
+          Styles.bg = Styles.light;
+          Styles.bg_2 = Styles.light;
+          Styles.fg = Styles.dark;
+        }
+      } else if (currentTheme == 'dark') {
+        if (mode == 'switch') {
+          Styles.bg = Styles.light;
+          Styles.bg_2 = Styles.light;
+          Styles.fg = Styles.dark;
+          currentTheme = 'light';
+        } else if (mode == 'set') {
+          Styles.bg = Styles.dark;
+          Styles.bg_2 = Styles.grey;
+          Styles.fg = Styles.light;
+        }
+      }
+      setPrefs('currentTheme');
+      isFABDisabled = true;
+    });
+    Timer(Duration(milliseconds: 300), () {
+      setState(() {
+        isFABDisabled = false;
+      });
+    });
   }
 
   void checkResult() {
@@ -145,7 +164,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  // ignore: missing_return
   static List<List<List<int>>> getNewGame([String difficulty = 'easy']) {
     Sudoku object = new Sudoku(difficulty);
     return [object.newSudoku, object.newSudokuSolved];
@@ -193,15 +211,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Color buttonColor(int k, int i) {
     Color color;
-    if ([0, 1, 2].contains(k) && [3, 4, 5].contains(i)) {
-      color = Colors.grey[300];
-    } else if ([3, 4, 5].contains(k) && [0, 1, 2, 6, 7, 8].contains(i)) {
-      color = Colors.grey[300];
-    } else if ([6, 7, 8].contains(k) && [3, 4, 5].contains(i)) {
-      color = Colors.grey[300];
+    if (([0, 1, 2].contains(k) && [3, 4, 5].contains(i)) ||
+        ([3, 4, 5].contains(k) && [0, 1, 2, 6, 7, 8].contains(i)) ||
+        ([6, 7, 8].contains(k) && [3, 4, 5].contains(i))) {
+      if (Styles.bg == Styles.dark) {
+        color = Styles.grey;
+      } else {
+        color = Colors.grey[300];
+      }
     } else {
-      color = Colors.white;
+      color = Styles.bg;
     }
+
     return color;
   }
 
@@ -212,9 +233,9 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     MaterialColor emptyColor;
     if (gameOver) {
-      emptyColor = MyApp.primaryColor;
+      emptyColor = Styles.primaryColor;
     } else {
-      emptyColor = MyApp.secondaryColor;
+      emptyColor = Styles.secondaryColor;
     }
     List<SizedBox> buttonList = new List<SizedBox>(9);
     for (var i = 0; i <= 8; i++) {
@@ -243,13 +264,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 },
           color: buttonColor(k, i),
-          textColor: game[k][i] == 0 ? buttonColor(k, i) : MyApp.secondaryColor,
+          textColor:
+              game[k][i] == 0 ? buttonColor(k, i) : Styles.secondaryColor,
           disabledColor: buttonColor(k, i),
-          disabledTextColor: gameCopy[k][i] == 0 ? emptyColor : Colors.black,
+          disabledTextColor: gameCopy[k][i] == 0 ? emptyColor : Styles.fg,
           highlightColor: Colors.blueAccent,
           shape: RoundedRectangleBorder(
               side: BorderSide(
-                color: Colors.black,
+                color: Styles.fg,
                 width: 1,
                 style: BorderStyle.solid,
               ),
@@ -302,21 +324,31 @@ class _MyHomePageState extends State<MyHomePage> {
   SpeedDialController speedDialController = SpeedDialController();
 
   Widget buildFloatingActionButton() {
-    final TextStyle customStyle =
-        TextStyle(inherit: false, color: Colors.black);
+    final TextStyle customStyle = TextStyle(
+        inherit: false,
+        //color: Styles.fg
+        color: Colors.black);
     final icons = [
       SpeedDialAction(
+          backgroundColor: Styles.bg_2,
           child: Icon(Icons.refresh),
           label: Text('Restart Game', style: customStyle)),
       SpeedDialAction(
+          backgroundColor: Styles.bg_2,
           child: Icon(Icons.add_rounded),
           label: Text('New Game', style: customStyle)),
       SpeedDialAction(
+          backgroundColor: Styles.bg_2,
           child: Icon(Icons.lightbulb_outline_rounded),
           label: Text('Show Solution', style: customStyle)),
       SpeedDialAction(
+          backgroundColor: Styles.bg_2,
           child: Icon(Icons.build_outlined),
           label: Text('Set Difficulty', style: customStyle)),
+      SpeedDialAction(
+          backgroundColor: Styles.bg_2,
+          child: Icon(Icons.invert_colors_on_rounded),
+          label: Text('Switch Theme', style: customStyle)),
     ];
 
     return SpeedDialFloatingActionButton(
@@ -328,8 +360,10 @@ class _MyHomePageState extends State<MyHomePage> {
       onAction: onSpeedDialAction,
       controller: speedDialController,
       isDismissible: true,
-      backgroundColor: MyApp.primaryColor,
-      foregroundColor: Colors.white,
+      backgroundColor: Styles.primaryColor,
+      foregroundColor: Styles.bg,
+      //labelBackgroundColor: Styles.bg_2,
+      //labelShadowColor: Colors.grey.withOpacity(0.1),
     );
   }
 
@@ -379,13 +413,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   newGame(AlertDifficultyState.difficulty);
                   currentDifficultyLevel = AlertDifficultyState.difficulty;
                   AlertDifficultyState.difficulty = null;
-                  setPrefs();
+                  setPrefs('currentDifficultyLevel');
                 });
               }
               setState(() {
                 isFABDisabled = false;
               });
             });
+          });
+        }
+        break;
+      case 4:
+        {
+          speedDialController.unfold();
+          Timer(Duration(milliseconds: 300), () {
+            changeTheme('switch');
+            setPrefs('currentTheme');
           });
         }
         break;
@@ -422,7 +465,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return true;
         },
         child: new Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Styles.bg,
           appBar: AppBar(
             centerTitle: true,
             // Here we take the value from the MyHomePage object that was created by
@@ -457,8 +500,8 @@ class _MyHomePageState extends State<MyHomePage> {
               : FloatingActionButton(
                   onPressed: null,
                   child: Icon(Icons.menu_rounded),
-                  foregroundColor: Colors.white,
-                  backgroundColor: MyApp.primaryColor,
+                  foregroundColor: Styles.bg,
+                  backgroundColor: Styles.primaryColor,
                 ),
         ));
   }

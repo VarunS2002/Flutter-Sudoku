@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'main.dart';
+import 'package:sudoku/Styles.dart';
 
 class AlertGameOver extends StatelessWidget {
   static bool newGame = false;
@@ -10,11 +10,18 @@ class AlertGameOver extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: Text('Game Over'),
-      content: Text('You successfully solved the Sudoku'),
+      backgroundColor: Styles.bg_2,
+      title: Text(
+        'Game Over',
+        style: TextStyle(color: Styles.fg),
+      ),
+      content: Text(
+        'You successfully solved the Sudoku',
+        style: TextStyle(color: Styles.fg),
+      ),
       actions: [
         FlatButton(
-          textColor: MyApp.primaryColor,
+          textColor: Styles.primaryColor,
           onPressed: () {
             Navigator.pop(context);
             restartGame = true;
@@ -22,7 +29,7 @@ class AlertGameOver extends StatelessWidget {
           child: Text('Restart Game'),
         ),
         FlatButton(
-          textColor: MyApp.primaryColor,
+          textColor: Styles.primaryColor,
           onPressed: () {
             Navigator.pop(context);
             newGame = true;
@@ -72,7 +79,12 @@ class AlertDifficulty extends State<AlertDifficultyState> {
   Widget build(BuildContext context) {
     return SimpleDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: Center(child: Text('Select Difficulty Level')),
+      title: Center(
+          child: Text(
+        'Select Difficulty Level',
+        style: TextStyle(color: Styles.fg),
+      )),
+      backgroundColor: Styles.bg_2,
       contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       children: <Widget>[
         for (String level in difficulties)
@@ -90,8 +102,8 @@ class AlertDifficulty extends State<AlertDifficultyState> {
                 style: TextStyle(
                     fontSize: 15,
                     color: level == this.currentDifficultyLevel
-                        ? MyApp.primaryColor
-                        : Colors.black)),
+                        ? Styles.primaryColor
+                        : Styles.fg)),
           ),
       ],
     );
@@ -103,18 +115,25 @@ class AlertExit extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      title: Text('Exit Game'),
-      content: Text('Are you sure you want to exit the game ?'),
+      backgroundColor: Styles.bg_2,
+      title: Text(
+        'Exit Game',
+        style: TextStyle(color: Styles.fg),
+      ),
+      content: Text(
+        'Are you sure you want to exit the game ?',
+        style: TextStyle(color: Styles.fg),
+      ),
       actions: [
         FlatButton(
-          textColor: MyApp.primaryColor,
+          textColor: Styles.primaryColor,
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text('No'),
         ),
         FlatButton(
-          textColor: MyApp.primaryColor,
+          textColor: Styles.primaryColor,
           onPressed: () {
             SystemNavigator.pop();
           },
@@ -159,12 +178,12 @@ class AlertNumbers extends State<AlertNumbersState> {
                 Navigator.pop(context);
               })
             },
-            color: Colors.white,
-            textColor: MyApp.primaryColor,
+            color: Styles.bg_2,
+            textColor: Styles.primaryColor,
             highlightColor: Colors.blueAccent,
             shape: RoundedRectangleBorder(
                 side: BorderSide(
-                  color: Colors.black,
+                  color: Styles.fg,
                   width: 1,
                   style: BorderStyle.solid,
                 ),
@@ -199,7 +218,12 @@ class AlertNumbers extends State<AlertNumbersState> {
   Widget build(BuildContext context) {
     return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        title: Center(child: Text('Choose a Number')),
+        backgroundColor: Styles.bg_2,
+        title: Center(
+            child: Text(
+          'Choose a Number',
+          style: TextStyle(color: Styles.fg),
+        )),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
