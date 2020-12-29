@@ -11,7 +11,7 @@
 -->
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
->[![APK: v1.1.0](https://img.shields.io/badge/APK-v1.1.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/1.1.0/Sudoku_1.1.0.apk)
+>[![APK: v2.0.0](https://img.shields.io/badge/APK-v2.0.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.0.0/Sudoku_2.0.0.apk)
 ![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
 >[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -110,7 +110,7 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 - Generates a New Game when you start the app
 
-- Input numbers in the grid by repeatedly clicking a box
+- Clicking a box displays a dialog with buttons 1-9 to input in the box
 
 - Clickable buttons will initially have no number and will turn red after the first click
 
@@ -118,11 +118,15 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 - The numbers in all the clickable buttons will turn blue if the solution is correct (This will also happen if you click Show Solution)
 
-- Button to start a New Game
+- 4 different difficulty levels to choose from :  Beginner, Easy, Medium and Hard
 
-- Button to Restart Game
+- New Game
 
-- Button to Show the Solution
+- Restart Game
+
+- Show Solution
+
+- Dark and Light theme
 
 - Material Design
 
@@ -130,13 +134,17 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 - [flutter_speed_dial_material_design](https://pub.dev/packages/flutter_speed_dial_material_design) is used for Stacked Floating Action Buttons
 
+- [flutter_animated_dialog](https://pub.dev/packages/flutter_animated_dialog) is used for animated alert dialogs
+  
+- [shared_preferences](https://pub.dev/packages/shared_preferences) is used for saving preferences locally
+  
 - Referred Algorithms:
       
     - [Sudoku Generation Algorithm](https://www.geeksforgeeks.org/program-sudoku-generator/) in Java
     
     - [Sudoku Generation and Solving Algorithm](https://www.101computing.net/sudoku-generator-algorithm/) in Python
       
-- If you face any issue then feel free to open an issue on GitHub
+- If you face any issue or have suggestions then feel free to open an issue on GitHub
 
 ## Screenshots:
 
@@ -145,14 +153,14 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
   ![Light](https://i.imgur.com/UeP0L0B.jpg)
   <br><br>
 
-- Main Screen while solved:<br><br>
+- Main Screen while solved with dark theme:<br><br>
 
-  ![Solved](https://i.imgur.com/MXbxBQ7.jpg)
+  ![Solved](https://i.imgur.com/3XS5qt2.jpg)
   <br><br>
 
 - Options:<br><br>
 
-  ![Options](https://i.imgur.com/wutzT0p.jpg)
+  ![Options](https://i.imgur.com/jqtga1R.jpg)
   <br><br>
 
 - Game Over Alert Box:<br><br>
