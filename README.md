@@ -11,7 +11,7 @@
 -->
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
->[![APK: v2.0.0](https://img.shields.io/badge/APK-v2.0.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.0.0/Sudoku_2.0.0.apk)
+>[![APK: v2.0.1](https://img.shields.io/badge/APK-v2.0.1-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.0.1/Sudoku_2.0.1.apk)
 ![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
 >[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
