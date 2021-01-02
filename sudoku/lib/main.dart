@@ -237,7 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       emptyColor = Styles.secondaryColor;
     }
-    List<SizedBox> buttonList = new List<SizedBox>(9);
+    List<SizedBox> buttonList = new List<SizedBox>.filled(9, null);
     for (var i = 0; i <= 8; i++) {
       var k = timesCalled;
       buttonList[i] = SizedBox(
@@ -299,7 +299,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Row> createRows() {
-    List<Row> rowList = new List<Row>(9);
+    List<Row> rowList = new List<Row>.filled(9, null);
     for (var i = 0; i <= 8; i++) {
       rowList[i] = oneRow();
     }
