@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
+import 'package:splashscreen/splashscreen.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
 import 'package:sudoku/Sudoku.dart';
@@ -34,13 +35,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Styles.primaryColor,
       ),
-      home: MyHomePage(title: 'Sudoku'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -51,13 +52,44 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
-
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new SplashScreen(
+      seconds: 2,
+      navigateAfterSeconds: AfterSplash(),
+      title: new Text(
+        '\nSudoku',
+        style: new TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 25.0, color: Styles.fg),
+      ),
+      image: new Image.asset('assets/icon/icon_foreground.png'),
+      photoSize: 50,
+      backgroundColor: Styles.bg,
+      loaderColor: Styles.primaryColor,
+      loadingText: Text(
+        'VarunS2002',
+        style: TextStyle(color: Colors.grey),
+      ),
+    );
+  }
+}
+
+class AfterSplash extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => AfterSplashState();
+}
+
+class AfterSplashState extends State<AfterSplash> {
   bool firstRun = true;
   bool gameOver = false;
   int timesCalled = 0;
@@ -474,7 +506,7 @@ class _MyHomePageState extends State<MyHomePage> {
             centerTitle: true,
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
-            title: Text(widget.title),
+            title: Text('Sudoku'),
           ),
           body: Center(
             // Center is a layout widget. It takes a single child and positions it

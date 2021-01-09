@@ -33,6 +33,9 @@ dependencies:
   # Animated Alert Dialogs
   flutter_animated_dialog: ^1.2.0
 
+  # Splashscreen
+  splashscreen: ^1.3.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -78,3 +81,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  assets:
+    - assets/icon/icon_foreground.png
+    - assets/icon/icon_square.png
+    - assets/icon/icon_round.png
