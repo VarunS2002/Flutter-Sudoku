@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
-import 'package:sudoku/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sudoku/Styles.dart';
 
@@ -265,7 +264,7 @@ class AlertAbout extends StatelessWidget {
               Image.asset('assets/icon/icon_round.png',
                   height: 48.0, width: 48.0, fit: BoxFit.contain),
               Text(
-                '  ' + AfterSplashState.appName,
+                '   Sudoku',
                 style: TextStyle(
                     color: Styles.fg,
                     fontFamily: 'roboto',
@@ -288,7 +287,7 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                AfterSplashState.packageName,
+                'com.varuns2002.sudoku',
                 style: TextStyle(
                     color: Styles.fg,
                     fontFamily: 'roboto',
@@ -311,7 +310,7 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Version: v${AfterSplashState.version} b${AfterSplashState.buildNumber}',
+                'Version: v2.0.1 b1000',
                 style: TextStyle(
                     color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
               ),

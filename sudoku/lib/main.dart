@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:package_info/package_info.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
 import 'package:sudoku/Sudoku.dart';
@@ -102,10 +101,6 @@ class AfterSplashState extends State<AfterSplash> {
   List<List<int>> gameSolved;
   static String currentDifficultyLevel;
   static String currentTheme;
-  static String version;
-  static String buildNumber;
-  static String packageName;
-  static String appName;
 
   @override
   void initState() {
@@ -122,7 +117,6 @@ class AfterSplashState extends State<AfterSplash> {
       newGame(currentDifficultyLevel);
       changeTheme('set');
     });
-    getPackageInfo();
   }
 
   Future<void> getPrefs() async {
@@ -131,14 +125,6 @@ class AfterSplashState extends State<AfterSplash> {
       currentDifficultyLevel = prefs.getString('currentDifficultyLevel');
       currentTheme = prefs.getString('currentTheme');
     });
-  }
-
-  Future<void> getPackageInfo() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    AfterSplashState.version = packageInfo.version;
-    AfterSplashState.buildNumber = packageInfo.buildNumber;
-    AfterSplashState.packageName = packageInfo.packageName;
-    AfterSplashState.appName = packageInfo.appName;
   }
 
   setPrefs(String property) async {
