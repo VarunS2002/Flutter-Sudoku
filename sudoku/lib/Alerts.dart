@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/gestures.dart';
+import 'package:sudoku/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:sudoku/Styles.dart';
 
 class AlertGameOver extends StatelessWidget {
@@ -207,7 +210,7 @@ class AlertNumbers extends State<AlertNumbersState> {
 
   List<Row> createRows() {
     List<List> numberLists = [numberList1, numberList2, numberList3];
-    List<Row> rowList = new List<Row>(3);
+    List<Row> rowList = new List<Row>.filled(3, null);
     for (var i = 0; i <= 2; i++) {
       rowList[i] = oneRow(numberLists[i]);
     }
@@ -230,5 +233,191 @@ class AlertNumbers extends State<AlertNumbersState> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: createRows(),
         ));
+  }
+}
+
+class AlertAbout extends StatelessWidget {
+  static const String authorUrl = "https://www.github.com/VarunS2002/";
+  static const String sourceUrl =
+      "https://github.com/VarunS2002/Flutter-Sudoku/";
+  static const String licenseUrl =
+      "https://github.com/VarunS2002/Flutter-Sudoku/blob/master/LICENSE";
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: Styles.bg_2,
+      title: Center(
+        child: Text(
+          'About',
+          style: TextStyle(color: Styles.fg),
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                  image: AssetImage('assets/icon/icon_round.png'),
+                  height: 48.0,
+                  width: 48.0,
+                  fit: BoxFit.contain),
+              Text(
+                '  ' + AfterSplashState.appName,
+                style: TextStyle(
+                    color: Styles.fg,
+                    fontFamily: 'roboto',
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '                ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(AfterSplashState.packageName,
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '                ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Version: v${AfterSplashState.version} b${AfterSplashState.buildNumber}',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '                ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Author: ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+              RichText(
+                  text: TextSpan(
+                      text: 'VarunS2002',
+                      style: TextStyle(
+                          color: Styles.primaryColor,
+                          fontFamily: 'roboto',
+                          fontSize: 15),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (await canLaunch(AlertAbout.authorUrl)) {
+                            await launch(AlertAbout.authorUrl);
+                          } else {
+                            throw 'Could not launch ${AlertAbout.authorUrl}';
+                          }
+                        })),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '                ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'License: ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+              RichText(
+                  text: TextSpan(
+                      text: 'GNU GPLv3',
+                      style: TextStyle(
+                          color: Styles.primaryColor,
+                          fontFamily: 'roboto',
+                          fontSize: 15),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (await canLaunch(AlertAbout.licenseUrl)) {
+                            await launch(AlertAbout.licenseUrl);
+                          } else {
+                            throw 'Could not launch ${AlertAbout.licenseUrl}';
+                          }
+                        })),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '                ',
+                style: TextStyle(
+                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RichText(
+                  text: TextSpan(
+                      text: 'Source Code',
+                      style: TextStyle(
+                          color: Styles.primaryColor,
+                          fontFamily: 'roboto',
+                          fontSize: 15),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () async {
+                          if (await canLaunch(AlertAbout.sourceUrl)) {
+                            await launch(AlertAbout.sourceUrl);
+                          } else {
+                            throw 'Could not launch ${AlertAbout.sourceUrl}';
+                          }
+                        })),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
