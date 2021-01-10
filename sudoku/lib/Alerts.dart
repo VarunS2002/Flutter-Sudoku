@@ -262,11 +262,8 @@ class AlertAbout extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(
-                  image: AssetImage('assets/icon/icon_round.png'),
-                  height: 48.0,
-                  width: 48.0,
-                  fit: BoxFit.contain),
+              Image.asset('assets/icon/icon_round.png',
+                  height: 48.0, width: 48.0, fit: BoxFit.contain),
               Text(
                 '  ' + AfterSplashState.appName,
                 style: TextStyle(
@@ -290,9 +287,13 @@ class AlertAbout extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(AfterSplashState.packageName,
+              Text(
+                AfterSplashState.packageName,
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 14, fontWeight: FontWeight.bold),
+                    color: Styles.fg,
+                    fontFamily: 'roboto',
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
