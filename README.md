@@ -11,7 +11,7 @@
 -->
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
->[![APK: v2.0.1](https://img.shields.io/badge/APK-v2.0.1-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.0.1/Sudoku_2.0.1.apk)
+>[![APK: v2.1.0](https://img.shields.io/badge/APK-v2.1.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.1.0/Sudoku_2.1.0.apk)
 ![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
 >[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -137,6 +137,10 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 - [flutter_animated_dialog](https://pub.dev/packages/flutter_animated_dialog) is used for animated alert dialogs
   
 - [shared_preferences](https://pub.dev/packages/shared_preferences) is used for saving preferences locally
+
+- [splashscreen](https://pub.dev/packages/splashscreen) is used for the splashscreen
+
+- [url_launcher](https://pub.dev/packages/url_launcher) is used for hyperlinks
   
 - Referred Algorithms:
       
@@ -160,7 +164,7 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 - Options:<br><br>
 
-  ![Options](https://i.imgur.com/jqtga1R.jpg)
+  ![Options](https://i.imgur.com/DJeDclG.jpg)
   <br><br>
 
 - Game Over Alert Box:<br><br>

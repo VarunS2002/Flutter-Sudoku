@@ -310,7 +310,7 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Version: v2.0.1 b1000',
+                'Version: v2.1.0 b1000',
                 style: TextStyle(
                     color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
               ),
