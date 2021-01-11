@@ -2,13 +2,7 @@
 
 # Flutter-Sudoku
 
-<!--
-## Play Online:
-
->### [Firebase]()
->
->### [GitHub Pages](https://varuns2002.github.io/Flutter-Sudoku/)
--->
+## [Play Online](https://sudoku-vs2002.web.app/)
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
 >[![APK: v2.1.0](https://img.shields.io/badge/APK-v2.1.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.1.0/Sudoku_2.1.0.apk)
@@ -20,11 +14,11 @@ This is a fully fledged Sudoku game written in Dart using Flutter.
 It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 ## Installation & Usage:
-<!--
+
 - Can be played online in the browser. See [Play Online](#play-online)
 
 - Can be installed as a Progressive Web App on any platform. See [Use Progressive Web Apps](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&hl=en)
--->
+
 - Can be installed as an Android app. See [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
 
 ## Building:
@@ -78,7 +72,7 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 1. Set current working directory to sudoku
 
-2. Run `flutter build web`
+2. Run `flutter build web --release`
 
 - This will compile the program and store the files in the `sudoku/build/web` directory
 
