@@ -262,6 +262,19 @@ class AfterSplashState extends State<AfterSplash> {
     return color;
   }
 
+  BorderRadiusGeometry buttonEdgeRadius(int k, int i) {
+    if (k == 0 && i == 0) {
+      return BorderRadius.only(topLeft: Radius.circular(5));
+    } else if (k == 0 && i == 8) {
+      return BorderRadius.only(topRight: Radius.circular(5));
+    } else if (k == 8 && i == 0) {
+      return BorderRadius.only(bottomLeft: Radius.circular(5));
+    } else if (k == 8 && i == 8) {
+      return BorderRadius.only(bottomRight: Radius.circular(5));
+    }
+    return BorderRadius.circular(0);
+  }
+
   List<SizedBox> createButtons() {
     if (firstRun) {
       setGame(1);
@@ -314,7 +327,7 @@ class AfterSplashState extends State<AfterSplash> {
             overlayColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
             shape: MaterialStateProperty.all<OutlinedBorder>(
                 RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0),
+              borderRadius: buttonEdgeRadius(k, i),
             )),
             side: MaterialStateProperty.all<BorderSide>(BorderSide(
               color: Styles.fg,
