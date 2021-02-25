@@ -22,16 +22,20 @@ class AlertGameOver extends StatelessWidget {
         style: TextStyle(color: Styles.fg),
       ),
       actions: [
-        FlatButton(
-          textColor: Styles.primaryColor,
+        TextButton(
+          style: ButtonStyle(
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Styles.primaryColor)),
           onPressed: () {
             Navigator.pop(context);
             restartGame = true;
           },
           child: Text('Restart Game'),
         ),
-        FlatButton(
-          textColor: Styles.primaryColor,
+        TextButton(
+          style: ButtonStyle(
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Styles.primaryColor)),
           onPressed: () {
             Navigator.pop(context);
             newGame = true;
@@ -127,15 +131,19 @@ class AlertExit extends StatelessWidget {
         style: TextStyle(color: Styles.fg),
       ),
       actions: [
-        FlatButton(
-          textColor: Styles.primaryColor,
+        TextButton(
+          style: ButtonStyle(
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Styles.primaryColor)),
           onPressed: () {
             Navigator.pop(context);
           },
           child: Text('No'),
         ),
-        FlatButton(
-          textColor: Styles.primaryColor,
+        TextButton(
+          style: ButtonStyle(
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Styles.primaryColor)),
           onPressed: () {
             SystemNavigator.pop();
           },
@@ -172,7 +180,7 @@ class AlertNumbers extends State<AlertNumbersState> {
         SizedBox(
           width: 38,
           height: 38,
-          child: FlatButton(
+          child: TextButton(
             onPressed: () => {
               setState(() {
                 numberSelected = numbers;
@@ -180,16 +188,21 @@ class AlertNumbers extends State<AlertNumbersState> {
                 Navigator.pop(context);
               })
             },
-            color: Styles.bg_2,
-            textColor: Styles.primaryColor,
-            highlightColor: Colors.blueAccent,
-            shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: Styles.fg,
-                  width: 1,
-                  style: BorderStyle.solid,
-                ),
-                borderRadius: BorderRadius.circular(5)),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Styles.bg_2),
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Styles.primaryColor),
+              overlayColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+              shape: MaterialStateProperty.all<OutlinedBorder>(
+                  RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              )),
+              side: MaterialStateProperty.all<BorderSide>(BorderSide(
+                color: Styles.fg,
+                width: 1,
+                style: BorderStyle.solid,
+              )),
+            ),
             child: Text(
               numbers.toString(),
               textAlign: TextAlign.center,
@@ -343,7 +356,7 @@ class AlertAbout extends StatelessWidget {
                           fontSize: 15),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                            await launch(AlertAbout.authorUrl);
+                          await launch(AlertAbout.authorUrl);
                         })),
             ],
           ),
@@ -374,7 +387,7 @@ class AlertAbout extends StatelessWidget {
                           fontSize: 15),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                            await launch(AlertAbout.licenseUrl);
+                          await launch(AlertAbout.licenseUrl);
                         })),
             ],
           ),
@@ -400,7 +413,7 @@ class AlertAbout extends StatelessWidget {
                           fontSize: 15),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                            await launch(AlertAbout.sourceUrl);
+                          await launch(AlertAbout.sourceUrl);
                         })),
             ],
           ),
