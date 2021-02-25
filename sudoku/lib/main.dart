@@ -279,7 +279,7 @@ class AfterSplashState extends State<AfterSplash> {
       buttonList[i] = SizedBox(
         width: 38,
         height: 38,
-        child: FlatButton(
+        child: TextButton(
           onPressed: isButtonDisabled || gameCopy[k][i] != 0
               ? null
               : () {
@@ -299,19 +299,29 @@ class AfterSplashState extends State<AfterSplash> {
                     });
                   });
                 },
-          color: buttonColor(k, i),
-          textColor:
-              game[k][i] == 0 ? buttonColor(k, i) : Styles.secondaryColor,
-          disabledColor: buttonColor(k, i),
-          disabledTextColor: gameCopy[k][i] == 0 ? emptyColor : Styles.fg,
-          highlightColor: Colors.blueAccent,
-          shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Styles.fg,
-                width: 1,
-                style: BorderStyle.solid,
-              ),
-              borderRadius: BorderRadius.circular(0)),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all<Color>(buttonColor(k, i)),
+            foregroundColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.disabled)) {
+                return gameCopy[k][i] == 0 ? emptyColor : Styles.fg;
+              }
+              return game[k][i] == 0
+                  ? buttonColor(k, i)
+                  : Styles.secondaryColor;
+            }),
+            overlayColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0),
+            )),
+            side: MaterialStateProperty.all<BorderSide>(BorderSide(
+              color: Styles.fg,
+              width: 1,
+              style: BorderStyle.solid,
+            )),
+          ),
           child: Text(
             game[k][i] != 0 ? game[k][i].toString() : ' ',
             textAlign: TextAlign.center,
