@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/gestures.dart';
+import 'package:sudoku/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sudoku/Styles.dart';
 
@@ -299,30 +300,7 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'com.varuns2002.sudoku',
-                style: TextStyle(
-                    color: Styles.fg,
-                    fontFamily: 'roboto',
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '                ',
-                style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Version: v2.1.0 b1000',
+                'Version: v2.1.0 b1000' + ' ' + AfterSplashState.platform,
                 style: TextStyle(
                     color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
               ),

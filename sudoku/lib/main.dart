@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
@@ -101,6 +102,7 @@ class AfterSplashState extends State<AfterSplash> {
   List<List<int>> gameSolved;
   static String currentDifficultyLevel;
   static String currentTheme;
+  static String platform;
 
   @override
   void initState() {
@@ -117,6 +119,12 @@ class AfterSplashState extends State<AfterSplash> {
       newGame(currentDifficultyLevel);
       changeTheme('set');
     });
+    if (kIsWeb) {
+      platform = 'web';
+    } else {
+      platform =
+          defaultTargetPlatform.toString().replaceFirst("TargetPlatform.", "");
+    }
   }
 
   Future<void> getPrefs() async {
