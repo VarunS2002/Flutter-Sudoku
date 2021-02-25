@@ -324,7 +324,6 @@ class AfterSplashState extends State<AfterSplash> {
                   ? buttonColor(k, i)
                   : Styles.secondaryColor;
             }),
-            overlayColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
             shape: MaterialStateProperty.all<OutlinedBorder>(
                 RoundedRectangleBorder(
               borderRadius: buttonEdgeRadius(k, i),

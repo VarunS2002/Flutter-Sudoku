@@ -192,7 +192,6 @@ class AlertNumbers extends State<AlertNumbersState> {
               backgroundColor: MaterialStateProperty.all<Color>(Styles.bg_2),
               foregroundColor:
                   MaterialStateProperty.all<Color>(Styles.primaryColor),
-              overlayColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
               shape: MaterialStateProperty.all<OutlinedBorder>(
                   RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
