@@ -343,11 +343,7 @@ class AlertAbout extends StatelessWidget {
                           fontSize: 15),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                          if (await canLaunch(AlertAbout.authorUrl)) {
                             await launch(AlertAbout.authorUrl);
-                          } else {
-                            throw 'Could not launch ${AlertAbout.authorUrl}';
-                          }
                         })),
             ],
           ),
@@ -378,11 +374,7 @@ class AlertAbout extends StatelessWidget {
                           fontSize: 15),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                          if (await canLaunch(AlertAbout.licenseUrl)) {
                             await launch(AlertAbout.licenseUrl);
-                          } else {
-                            throw 'Could not launch ${AlertAbout.licenseUrl}';
-                          }
                         })),
             ],
           ),
@@ -408,11 +400,7 @@ class AlertAbout extends StatelessWidget {
                           fontSize: 15),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () async {
-                          if (await canLaunch(AlertAbout.sourceUrl)) {
                             await launch(AlertAbout.sourceUrl);
-                          } else {
-                            throw 'Could not launch ${AlertAbout.sourceUrl}';
-                          }
                         })),
             ],
           ),
