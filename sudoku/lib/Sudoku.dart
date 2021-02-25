@@ -94,7 +94,7 @@ class Sudoku {
   }
 
   int randomGeneratorK() {
-    List<int> numberList = new List<int>(81);
+    List<int> numberList = new List<int>.filled(81, null);
     for (int i = 0; i < N * N; i++) {
       numberList[i] = i;
     }
