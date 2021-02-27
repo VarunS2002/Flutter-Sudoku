@@ -300,7 +300,7 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Version: v2.1.0' + ' ' + AfterSplashState.platform,
+                'Version: v2.1.1' + ' ' + AfterSplashState.platform,
                 style: TextStyle(
                     color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
               ),

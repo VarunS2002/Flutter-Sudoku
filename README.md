@@ -5,7 +5,7 @@
 ## [Play Online](https://sudoku-vs2002.web.app/)
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
->[![APK: v2.1.0](https://img.shields.io/badge/APK-v2.1.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.1.0/Sudoku_2.1.0.apk)
+>[![APK: v2.1.1](https://img.shields.io/badge/APK-v2.1.1-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.1.1/Sudoku_2.1.1.apk)
 ![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
 >[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -146,19 +146,24 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
 ## Screenshots:
 
-- Main Screen while solving:<br><br>
+- Main Screen while solving with light theme:<br><br>
 
-  ![Light](https://i.imgur.com/UeP0L0B.jpg)
+  ![Light](https://i.imgur.com/UOXsle8.png)
   <br><br>
 
 - Main Screen while solved with dark theme:<br><br>
 
-  ![Solved](https://i.imgur.com/3XS5qt2.jpg)
+  ![Solved](https://i.imgur.com/MODHngM.png)
   <br><br>
 
 - Options:<br><br>
 
-  ![Options](https://i.imgur.com/DJeDclG.jpg)
+  ![Options](https://i.imgur.com/LkUsyLB.png)
+  <br><br>
+
+- Choose Number Alert:<br><br>
+
+  ![Choose](https://i.imgur.com/516Re9f.png)
   <br><br>
 
 - Game Over Alert Box:<br><br>
