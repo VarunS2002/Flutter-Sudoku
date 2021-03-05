@@ -7,11 +7,11 @@
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
 >[![APK: v2.1.1](https://img.shields.io/badge/APK-v2.1.1-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.1.1/Sudoku_2.1.1.apk)
 ![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
->[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This is a fully fledged Sudoku game written in Dart using Flutter.
 
-It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
+It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web App.
 
 ## Installation & Usage:
 
@@ -47,9 +47,16 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 
     - Run these commands:
       ```
-       flutter channel beta
-       flutter upgrade
        flutter config --enable-web
+      ```
+
+- For Exporting to Windows:
+
+    - Set current working directory to sudoku
+
+    - Run these commands:
+      ```
+       flutter config --enable-windows-desktop
       ```
 
 ### Installing required packages
@@ -79,6 +86,16 @@ It can be exported to Android, iOS, Fuchsia, Windows, MacOS, PWA or a Web App.
 - You can run a simple http server in this directory to run your app in the browser
 
 - [dhttpd](https://pub.dev/packages/dhttpd) is a Dart package for running a simple http server
+
+>#### Steps for exporting to Windows
+
+1. Set current working directory to sudoku
+
+2. Run `flutter build windows --release`
+
+- This will compile the program and store the files in the `sudoku/build/windows/runner/Release` directory
+
+- It will export a release build that can be run directly
 
 >#### Steps for exporting to Android
 
