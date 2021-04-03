@@ -27,9 +27,6 @@ dependencies:
   # Saving Preferences Locally
   shared_preferences: ^2.0.3
 
-  # Stacked Floating Action Buttons
-  flutter_speed_dial_material_design: ^2.0.0
-
   # Animated Alert Dialogs
   flutter_animated_dialog: ^1.2.0
 

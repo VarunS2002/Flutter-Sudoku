@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-import 'package:flutter_speed_dial_material_design/flutter_speed_dial_material_design.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
@@ -95,7 +94,6 @@ class AfterSplashState extends State<AfterSplash> {
   bool gameOver = false;
   int timesCalled = 0;
   bool isButtonDisabled = false;
-  bool isFABDisabled = false;
   List<List<List<int>>> gameList;
   List<List<int>> game;
   List<List<int>> gameCopy;
@@ -170,12 +168,6 @@ class AfterSplashState extends State<AfterSplash> {
         }
       }
       setPrefs('currentTheme');
-      isFABDisabled = true;
-    });
-    Timer(Duration(milliseconds: 300), () {
-      setState(() {
-        isFABDisabled = false;
-      });
     });
   }
 
@@ -184,9 +176,6 @@ class AfterSplashState extends State<AfterSplash> {
       isButtonDisabled = !isButtonDisabled;
       gameOver = true;
       Timer(Duration(milliseconds: 500), () {
-        setState(() {
-          isFABDisabled = true;
-        });
         showAnimatedDialog<void>(
             animationType: DialogTransitionType.fadeScale,
             barrierDismissible: true,
@@ -200,9 +189,6 @@ class AfterSplashState extends State<AfterSplash> {
             restartGame();
             AlertGameOver.restartGame = false;
           }
-          setState(() {
-            isFABDisabled = false;
-          });
         });
       });
     }
@@ -304,9 +290,6 @@ class AfterSplashState extends State<AfterSplash> {
           onPressed: isButtonDisabled || gameCopy[k][i] != 0
               ? null
               : () {
-                  setState(() {
-                    isFABDisabled = true;
-                  });
                   showAnimatedDialog<void>(
                       animationType: DialogTransitionType.fade,
                       barrierDismissible: true,
@@ -315,9 +298,6 @@ class AfterSplashState extends State<AfterSplash> {
                       builder: (_) => AlertNumbersState()).whenComplete(() {
                     callback([k, i], AlertNumbersState.number);
                     AlertNumbersState.number = null;
-                    setState(() {
-                      isFABDisabled = false;
-                    });
                   });
                 },
           style: ButtonStyle(
@@ -387,142 +367,102 @@ class AfterSplashState extends State<AfterSplash> {
     });
   }
 
-  SpeedDialController speedDialController = SpeedDialController();
-
-  Widget buildFloatingActionButton() {
-    final TextStyle customStyle = TextStyle(
-        inherit: false,
-        //color: Styles.fg
-        color: Colors.black);
-    final icons = [
-      SpeedDialAction(
-          backgroundColor: Styles.bg_2,
-          child: Icon(Icons.refresh),
-          label: Text('Restart Game', style: customStyle)),
-      SpeedDialAction(
-          backgroundColor: Styles.bg_2,
-          child: Icon(Icons.add_rounded),
-          label: Text('New Game', style: customStyle)),
-      SpeedDialAction(
-          backgroundColor: Styles.bg_2,
-          child: Icon(Icons.lightbulb_outline_rounded),
-          label: Text('Show Solution', style: customStyle)),
-      SpeedDialAction(
-          backgroundColor: Styles.bg_2,
-          child: Icon(Icons.build_outlined),
-          label: Text('Set Difficulty', style: customStyle)),
-      SpeedDialAction(
-          backgroundColor: Styles.bg_2,
-          child: Icon(Icons.invert_colors_on_rounded),
-          label: Text('Switch Theme', style: customStyle)),
-      SpeedDialAction(
-          backgroundColor: Styles.bg_2,
-          child: Icon(Icons.info_outline_rounded),
-          label: Text('About', style: customStyle)),
-    ];
-
-    return SpeedDialFloatingActionButton(
-      actions: icons,
-      childOnFold: Icon(Icons.menu_rounded, key: UniqueKey()),
-      screenColor: Colors.black.withOpacity(0.3),
-      childOnUnfold: Icon(Icons.close_rounded, key: UniqueKey()),
-      useRotateAnimation: false,
-      onAction: onSpeedDialAction,
-      controller: speedDialController,
-      isDismissible: true,
-      backgroundColor: Styles.primaryColor,
-      foregroundColor: Styles.bg,
-      //labelBackgroundColor: Styles.bg_2,
-      //labelShadowColor: Colors.grey.withOpacity(0.1),
-    );
-  }
-
-  onSpeedDialAction(int selectedActionIndex) {
-    switch (selectedActionIndex) {
-      case 0:
-        {
-          speedDialController.unfold();
-          Timer(Duration(milliseconds: 300), () {
-            restartGame();
-          });
-        }
-        break;
-      case 1:
-        {
-          speedDialController.unfold();
-          Timer(Duration(milliseconds: 300), () {
-            newGame(currentDifficultyLevel);
-          });
-        }
-        break;
-      case 2:
-        {
-          speedDialController.unfold();
-          Timer(Duration(milliseconds: 300), () {
-            showSolution();
-          });
-        }
-        break;
-      case 3:
-        {
-          speedDialController.unfold();
-          Timer(Duration(milliseconds: 300), () {
-            setState(() {
-              isFABDisabled = true;
-            });
-            showAnimatedDialog<void>(
-                    animationType: DialogTransitionType.fadeScale,
-                    barrierDismissible: true,
-                    duration: Duration(milliseconds: 350),
-                    context: context,
-                    builder: (_) =>
-                        AlertDifficultyState(currentDifficultyLevel))
-                .whenComplete(() {
-              if (AlertDifficultyState.difficulty != null) {
-                Timer(Duration(milliseconds: 300), () {
-                  newGame(AlertDifficultyState.difficulty);
-                  currentDifficultyLevel = AlertDifficultyState.difficulty;
-                  AlertDifficultyState.difficulty = null;
-                  setPrefs('currentDifficultyLevel');
-                });
-              }
-              setState(() {
-                isFABDisabled = false;
-              });
-            });
-          });
-        }
-        break;
-      case 4:
-        {
-          speedDialController.unfold();
-          Timer(Duration(milliseconds: 300), () {
-            changeTheme('switch');
-            setPrefs('currentTheme');
-          });
-        }
-        break;
-      case 5:
-        {
-          speedDialController.unfold();
-          Timer(Duration(milliseconds: 300), () {
-            setState(() {
-              isFABDisabled = true;
-            });
-            showAnimatedDialog<void>(
-                animationType: DialogTransitionType.fadeScale,
-                barrierDismissible: true,
-                duration: Duration(milliseconds: 350),
-                context: context,
-                builder: (_) => AlertAbout()).whenComplete(() {
-              setState(() {
-                isFABDisabled = false;
-              });
-            });
-          });
-        }
-        break;
-    }
+  showOptionModalSheet(BuildContext context) {
+    BuildContext outerContext = context;
+    showModalBottomSheet(
+        context: context,
+        backgroundColor: Styles.bg_2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(10),
+          ),
+        ),
+        builder: (context) {
+          final TextStyle customStyle =
+              TextStyle(inherit: false, color: Styles.fg);
+          return Wrap(
+            children: [
+              ListTile(
+                leading: Icon(Icons.info_outline_rounded, color: Styles.fg),
+                title: Text('About', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(
+                      Duration(milliseconds: 200),
+                      () => showAnimatedDialog<void>(
+                          animationType: DialogTransitionType.fadeScale,
+                          barrierDismissible: true,
+                          duration: Duration(milliseconds: 350),
+                          context: outerContext,
+                          builder: (_) => AlertAbout()));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.invert_colors_on_rounded, color: Styles.fg),
+                title: Text('Switch Theme', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(Duration(milliseconds: 200), () {
+                    changeTheme('switch');
+                    setPrefs('currentTheme');
+                  });
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.build_outlined, color: Styles.fg),
+                title: Text('Set Difficulty', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(
+                      Duration(milliseconds: 300),
+                      () => showAnimatedDialog<void>(
+                              animationType: DialogTransitionType.fadeScale,
+                              barrierDismissible: true,
+                              duration: Duration(milliseconds: 350),
+                              context: outerContext,
+                              builder: (_) => AlertDifficultyState(
+                                  currentDifficultyLevel)).whenComplete(() {
+                            if (AlertDifficultyState.difficulty != null) {
+                              Timer(Duration(milliseconds: 300), () {
+                                newGame(AlertDifficultyState.difficulty);
+                                currentDifficultyLevel =
+                                    AlertDifficultyState.difficulty;
+                                AlertDifficultyState.difficulty = null;
+                                setPrefs('currentDifficultyLevel');
+                              });
+                            }
+                          }));
+                },
+              ),
+              ListTile(
+                leading:
+                    Icon(Icons.lightbulb_outline_rounded, color: Styles.fg),
+                title: Text('Show Solution', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(Duration(milliseconds: 200), () => showSolution());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.add_rounded, color: Styles.fg),
+                title: Text('New Game', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(Duration(milliseconds: 200),
+                      () => newGame(currentDifficultyLevel));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.refresh, color: Styles.fg),
+                title: Text('Restart Game', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(Duration(milliseconds: 200), () => restartGame());
+                },
+              ),
+            ],
+          );
+        });
   }
 
   @override
@@ -538,61 +478,52 @@ class AfterSplashState extends State<AfterSplash> {
           if (kIsWeb) {
             return false;
           } else {
-            setState(() {
-              isFABDisabled = true;
-            });
             showAnimatedDialog<void>(
                 animationType: DialogTransitionType.fadeScale,
                 barrierDismissible: true,
                 duration: Duration(milliseconds: 350),
                 context: context,
-                builder: (_) => AlertExit()).whenComplete(() {
-              setState(() {
-                isFABDisabled = false;
-              });
-            });
+                builder: (_) => AlertExit());
           }
           return true;
         },
         child: new Scaffold(
-          backgroundColor: Styles.bg,
-          appBar: AppBar(
-            centerTitle: true,
-            // Here we take the value from the MyHomePage object that was created by
-            // the App.build method, and use it to set our appbar title.
-            title: Text('Sudoku'),
-          ),
-          body: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
-            child: Column(
-              // Column is also a layout widget. It takes a list of children and
-              // arranges them vertically. By default, it sizes itself to fit its
-              // children horizontally, and tries to be as tall as its parent.
-              //
-              // Invoke "debug painting" (press "p" in the console, choose the
-              // "Toggle Debug Paint" action from the Flutter Inspector in Android
-              // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-              // to see the wireframe for each widget.
-              //
-              // Column has various properties to control how it sizes itself and
-              // how it positions its children. Here we use mainAxisAlignment to
-              // center the children vertically; the main axis here is the vertical
-              // axis because Columns are vertical (the cross axis would be
-              // horizontal).
-              mainAxisAlignment: MainAxisAlignment.center,
-
-              children: createRows(),
+            backgroundColor: Styles.bg,
+            appBar: AppBar(
+              centerTitle: true,
+              // Here we take the value from the MyHomePage object that was created by
+              // the App.build method, and use it to set our appbar title.
+              title: Text('Sudoku'),
             ),
-          ),
-          floatingActionButton: !isFABDisabled
-              ? buildFloatingActionButton()
-              : FloatingActionButton(
-                  onPressed: null,
-                  child: Icon(Icons.menu_rounded),
-                  foregroundColor: Styles.bg,
-                  backgroundColor: Styles.primaryColor,
+            body: Builder(builder: (builder) {
+              return Center(
+                // Center is a layout widget. It takes a single child and positions it
+                // in the middle of the parent.
+                child: Column(
+                  // Column is also a layout widget. It takes a list of children and
+                  // arranges them vertically. By default, it sizes itself to fit its
+                  // children horizontally, and tries to be as tall as its parent.
+                  //
+                  // Invoke "debug painting" (press "p" in the console, choose the
+                  // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                  // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                  // to see the wireframe for each widget.
+                  //
+                  // Column has various properties to control how it sizes itself and
+                  // how it positions its children. Here we use mainAxisAlignment to
+                  // center the children vertically; the main axis here is the vertical
+                  // axis because Columns are vertical (the cross axis would be
+                  // horizontal).
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: createRows(),
                 ),
-        ));
+              );
+            }),
+            floatingActionButton: FloatingActionButton(
+              foregroundColor: Styles.bg,
+              backgroundColor: Styles.primaryColor,
+              onPressed: () => showOptionModalSheet(context),
+              child: Icon(Icons.menu_rounded),
+            )));
   }
 }
