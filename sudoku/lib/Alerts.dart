@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/gestures.dart';
 import 'package:sudoku/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:sudoku/Styles.dart';
@@ -324,17 +323,18 @@ class AlertAbout extends StatelessWidget {
                 style: TextStyle(
                     color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
               ),
-              RichText(
-                  text: TextSpan(
-                      text: 'VarunS2002',
-                      style: TextStyle(
-                          color: Styles.primaryColor,
-                          fontFamily: 'roboto',
-                          fontSize: 15),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          await launch(AlertAbout.authorUrl);
-                        })),
+              InkWell(
+                onTap: () async {
+                  await launch(AlertAbout.authorUrl);
+                },
+                child: Text(
+                  'VarunS2002',
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontFamily: 'roboto',
+                      fontSize: 15),
+                ),
+              )
             ],
           ),
           Row(
@@ -355,17 +355,18 @@ class AlertAbout extends StatelessWidget {
                 style: TextStyle(
                     color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
               ),
-              RichText(
-                  text: TextSpan(
-                      text: 'GNU GPLv3',
-                      style: TextStyle(
-                          color: Styles.primaryColor,
-                          fontFamily: 'roboto',
-                          fontSize: 15),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          await launch(AlertAbout.licenseUrl);
-                        })),
+              InkWell(
+                onTap: () async {
+                  await launch(AlertAbout.licenseUrl);
+                },
+                child: Text(
+                  'GNU GPLv3',
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontFamily: 'roboto',
+                      fontSize: 15),
+                ),
+              ),
             ],
           ),
           Row(
@@ -381,17 +382,18 @@ class AlertAbout extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RichText(
-                  text: TextSpan(
-                      text: 'Source Code',
-                      style: TextStyle(
-                          color: Styles.primaryColor,
-                          fontFamily: 'roboto',
-                          fontSize: 15),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () async {
-                          await launch(AlertAbout.sourceUrl);
-                        })),
+              InkWell(
+                onTap: () async {
+                  await launch(AlertAbout.sourceUrl);
+                },
+                child: Text(
+                  'Source Code',
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontFamily: 'roboto',
+                      fontSize: 15),
+                ),
+              ),
             ],
           ),
         ],
