@@ -359,29 +359,29 @@ class AfterSplashState extends State<AfterSplash> {
           return Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.info_outline_rounded, color: Styles.fg),
-                title: Text('About', style: customStyle),
+                leading: Icon(Icons.refresh, color: Styles.fg),
+                title: Text('Restart Game', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(
-                      Duration(milliseconds: 200),
-                      () => showAnimatedDialog<void>(
-                          animationType: DialogTransitionType.fadeScale,
-                          barrierDismissible: true,
-                          duration: Duration(milliseconds: 350),
-                          context: outerContext,
-                          builder: (_) => AlertAbout()));
+                  Timer(Duration(milliseconds: 200), () => restartGame());
                 },
               ),
               ListTile(
-                leading: Icon(Icons.invert_colors_on_rounded, color: Styles.fg),
-                title: Text('Switch Theme', style: customStyle),
+                leading: Icon(Icons.add_rounded, color: Styles.fg),
+                title: Text('New Game', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200), () {
-                    changeTheme('switch');
-                    setPrefs('currentTheme');
-                  });
+                  Timer(Duration(milliseconds: 200),
+                      () => newGame(currentDifficultyLevel));
+                },
+              ),
+              ListTile(
+                leading:
+                    Icon(Icons.lightbulb_outline_rounded, color: Styles.fg),
+                title: Text('Show Solution', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(Duration(milliseconds: 200), () => showSolution());
                 },
               ),
               ListTile(
@@ -411,29 +411,29 @@ class AfterSplashState extends State<AfterSplash> {
                 },
               ),
               ListTile(
-                leading:
-                    Icon(Icons.lightbulb_outline_rounded, color: Styles.fg),
-                title: Text('Show Solution', style: customStyle),
+                leading: Icon(Icons.invert_colors_on_rounded, color: Styles.fg),
+                title: Text('Switch Theme', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200), () => showSolution());
+                  Timer(Duration(milliseconds: 200), () {
+                    changeTheme('switch');
+                    setPrefs('currentTheme');
+                  });
                 },
               ),
               ListTile(
-                leading: Icon(Icons.add_rounded, color: Styles.fg),
-                title: Text('New Game', style: customStyle),
+                leading: Icon(Icons.info_outline_rounded, color: Styles.fg),
+                title: Text('About', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200),
-                      () => newGame(currentDifficultyLevel));
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.refresh, color: Styles.fg),
-                title: Text('Restart Game', style: customStyle),
-                onTap: () {
-                  Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200), () => restartGame());
+                  Timer(
+                      Duration(milliseconds: 200),
+                      () => showAnimatedDialog<void>(
+                          animationType: DialogTransitionType.fadeScale,
+                          barrierDismissible: true,
+                          duration: Duration(milliseconds: 350),
+                          context: outerContext,
+                          builder: (_) => AlertAbout()));
                 },
               ),
             ],
