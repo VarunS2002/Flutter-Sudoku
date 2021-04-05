@@ -441,7 +441,6 @@ class AfterSplashState extends State<AfterSplash> {
                   Navigator.pop(context);
                   Timer(Duration(milliseconds: 200), () {
                     changeTheme('switch');
-                    setPrefs('currentTheme');
                   });
                 },
               ),
