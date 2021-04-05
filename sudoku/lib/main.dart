@@ -99,10 +99,16 @@ class AfterSplashState extends State<AfterSplash> {
       changeTheme('set');
     });
     if (kIsWeb) {
-      platform = 'web';
+      platform = 'web-' +
+          defaultTargetPlatform
+              .toString()
+              .replaceFirst("TargetPlatform.", "")
+              .toLowerCase();
     } else {
-      platform =
-          defaultTargetPlatform.toString().replaceFirst("TargetPlatform.", "");
+      platform = defaultTargetPlatform
+          .toString()
+          .replaceFirst("TargetPlatform.", "")
+          .toLowerCase();
     }
   }
 
