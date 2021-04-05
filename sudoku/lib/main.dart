@@ -243,6 +243,24 @@ class AfterSplashState extends State<AfterSplash> {
     return color;
   }
 
+  double buttonSize() {
+    double size = 50;
+    if (AfterSplashState.platform.contains('android') ||
+        AfterSplashState.platform.contains('ios')) {
+      size = 38;
+    }
+    return size;
+  }
+
+  double buttonFontSize() {
+    double size = 20;
+    if (AfterSplashState.platform.contains('android') ||
+        AfterSplashState.platform.contains('ios')) {
+      size = 16;
+    }
+    return size;
+  }
+
   BorderRadiusGeometry buttonEdgeRadius(int k, int i) {
     if (k == 0 && i == 0) {
       return BorderRadius.only(topLeft: Radius.circular(5));
@@ -271,8 +289,8 @@ class AfterSplashState extends State<AfterSplash> {
     for (var i = 0; i <= 8; i++) {
       var k = timesCalled;
       buttonList[i] = SizedBox(
-        width: 38,
-        height: 38,
+        width: buttonSize(),
+        height: buttonSize(),
         child: TextButton(
           onPressed: isButtonDisabled || gameCopy[k][i] != 0
               ? null
@@ -312,7 +330,7 @@ class AfterSplashState extends State<AfterSplash> {
           child: Text(
             game[k][i] != 0 ? game[k][i].toString() : ' ',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: buttonFontSize()),
           ),
         ),
       );
