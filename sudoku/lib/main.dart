@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sudoku',
+      debugShowCheckedModeBanner: true,
       theme: ThemeData(
         primarySwatch: Styles.primaryColor,
       ),
