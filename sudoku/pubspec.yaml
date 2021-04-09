@@ -1,5 +1,5 @@
 name: sudoku
-description: A simple Sudoku game.
+description: A fully fledged Sudoku game.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
