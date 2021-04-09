@@ -89,14 +89,14 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.varuns2002" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
-            VALUE "FileVersion", VERSION_AS_STRING "\0"
+            VALUE "CompanyName", "VarunS2002" "\0"
+            VALUE "FileDescription", "A fully fledged Sudoku game." "\0"
+            VALUE "FileVersion", "2.2.0" "\0"
             VALUE "InternalName", "sudoku" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 com.varuns2002. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 VarunS2002. All rights reserved." "\0"
             VALUE "OriginalFilename", "sudoku.exe" "\0"
-            VALUE "ProductName", "sudoku" "\0"
-            VALUE "ProductVersion", VERSION_AS_STRING "\0"
+            VALUE "ProductName", "Sudoku" "\0"
+            VALUE "ProductVersion", "2.2.0" "\0"
         END
     END
     BLOCK "VarFileInfo"
