@@ -49,5 +49,32 @@
             "sizes": "512x512",
             "type": "image/png"
         }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshots/Solved_Dark_324x648.png",
+            "type": "image/png",
+            "sizes": "324x648"
+        },
+        {
+            "src": "screenshots/Solving_Light_324x648.png",
+            "type": "image/png",
+            "sizes": "324x648"
+        },
+        {
+            "src": "screenshots/Choose_324x648.png",
+            "type": "image/png",
+            "sizes": "324x648"
+        },
+        {
+            "src": "screenshots/Result_324x648.png",
+            "type": "image/png",
+            "sizes": "324x648"
+        },
+        {
+            "src": "screenshots/Options_324x648.png",
+            "type": "image/png",
+            "sizes": "324x648"
+        }
     ]
 }
