@@ -5,8 +5,8 @@
 ## [Play Online](https://sudoku-vs2002.web.app/)
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
->[![APK: v2.1.1](https://img.shields.io/badge/APK-v2.1.1-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.1.1/Sudoku_2.1.1.apk)
-![Build: passing](https://img.shields.io/badge/build-passing-brightgreen)
+
+> [![APK: v2.2.0](https://img.shields.io/badge/APK-v2.2.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.2.0/Sudoku_2.2.0.apk)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This is a fully fledged Sudoku game written in Dart using Flutter.
@@ -17,7 +17,8 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 - Can be played online in the browser. See [Play Online](#play-online)
 
-- Can be installed as a Progressive Web App on any platform. See [Use Progressive Web Apps](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&hl=en)
+- Can be installed as a Progressive Web App on any platform.
+  See [Use Progressive Web Apps](https://support.google.com/chrome/answer/9658361?co=GENIE.Platform%3DAndroid&hl=en)
 
 - Can be installed as an Android app. See [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
 
@@ -29,7 +30,10 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 - For Exporting to Android:
 
-    - [Android Studio](https://developer.android.com/studio#downloads) 3.0+ / [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) 2017.1+ with [Flutter Plugin](https://plugins.jetbrains.com/plugin/9212-flutter) and [Dart Plugin](https://plugins.jetbrains.com/plugin/6351-dart) (recommeded)
+    - [Android Studio](https://developer.android.com/studio#downloads) 3.0+
+      / [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) 2017.1+
+      with [Flutter Plugin](https://plugins.jetbrains.com/plugin/9212-flutter)
+      and [Dart Plugin](https://plugins.jetbrains.com/plugin/6351-dart) (recommeded)
 
     - Android SDK from Android Studio or IntelliJ IDEA (API Level 30 recommended)
 
@@ -71,11 +75,12 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
    flutter pub upgrade
    flutter pub outdated
    ```
--  This will install all the required packages
+
+- This will install all the required packages
 
 4. Run `flutter doctor` to check fo any issues (Optional)
 
->#### Steps for exporting to a PWA or Web App
+> #### Steps for exporting to a PWA or Web App
 
 1. Set current working directory to sudoku
 
@@ -87,7 +92,7 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 - [dhttpd](https://pub.dev/packages/dhttpd) is a Dart package for running a simple http server
 
->#### Steps for exporting to Windows
+> #### Steps for exporting to Windows
 
 1. Set current working directory to sudoku
 
@@ -97,7 +102,7 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 - It will export a release build that can be run directly
 
->#### Steps for exporting to Android
+> #### Steps for exporting to Android
 
 1. Set current working directory to sudoku
 
@@ -107,9 +112,11 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
    OR
 
-   `flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi` to build multiple APKs for every ABI
+   `flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi` to build multiple APKs
+   for every ABI
 
-- This will export a release build of the apk file signed with debug keys which can be installed on an Android phone or emulator
+- This will export a release build of the apk file signed with debug keys which can be installed on an Android phone or
+  emulator
 
 - The APK file/s will be saved in `sudoku/build/app/outputs/flutter-apk`
 
@@ -117,7 +124,7 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 ## Features:
 
-- Uses a combination of Sudoku generation and solving algorithm to create a unique game
+- Uses a combination of a Sudoku generation and solving algorithm to create a unique game
 
 - Generates a New Game when you start the app
 
@@ -125,11 +132,17 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 - Clickable buttons will initially have no number and will turn red after the first click
 
-- After completely solving the grid, if the solution is correct it will alert you that you successfully solved the Sudoku
+- After completely solving the grid, if the solution is correct it will alert you that you successfully solved the
+  Sudoku
 
-- The numbers in all the clickable buttons will turn blue if the solution is correct (This will also happen if you click Show Solution)
+- The numbers in all the clickable buttons will turn blue if the solution is correct (This will also happen if you click
+  Show Solution)
 
-- 4 different difficulty levels to choose from :  Beginner, Easy, Medium and Hard
+- 4 different difficulty levels to choose from :
+    - Beginner - 18 empty squares
+    - Easy - 27 empty squares
+    - Medium - 36 empty squares
+    - Hard - 54 empty squares
 
 - New Game
 
@@ -143,46 +156,46 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 ## Note:
 
-- [flutter_speed_dial_material_design](https://pub.dev/packages/flutter_speed_dial_material_design) is used for Stacked Floating Action Buttons
-
 - [flutter_animated_dialog](https://pub.dev/packages/flutter_animated_dialog) is used for animated alert dialogs
-  
+
 - [shared_preferences](https://pub.dev/packages/shared_preferences) is used for saving preferences locally
 
 - [splashscreen](https://pub.dev/packages/splashscreen) is used for the splashscreen
 
 - [url_launcher](https://pub.dev/packages/url_launcher) is used for hyperlinks
-  
+
 - Referred Algorithms:
-      
+
     - [Sudoku Generation Algorithm](https://www.geeksforgeeks.org/program-sudoku-generator/) in Java
-    
+
     - [Sudoku Generation and Solving Algorithm](https://www.101computing.net/sudoku-generator-algorithm/) in Python
-      
+
+- Untested on iOS, MacOS, Linux and Fuchsia. Additional chnages might be required to work correctly
+
 - If you face any issue or have suggestions then feel free to open an issue on GitHub
 
 ## Screenshots:
 
-- Main Screen while solving with light theme:<br><br>
-
-  ![Light](https://i.imgur.com/UOXsle8.png)
-  <br><br>
-
 - Main Screen while solved with dark theme:<br><br>
 
-  ![Solved](https://i.imgur.com/MODHngM.png)
+  ![Solved_Dark](https://i.imgur.com/PItmR0H.png)
   <br><br>
 
-- Options:<br><br>
+- Main Screen while solving with light theme:<br><br>
 
-  ![Options](https://i.imgur.com/LkUsyLB.png)
+  ![Solving_Light](https://i.imgur.com/l987sBq.png)
   <br><br>
 
 - Choose Number Alert:<br><br>
 
-  ![Choose](https://i.imgur.com/516Re9f.png)
+  ![Choose](https://i.imgur.com/k8IQA7E.png)
   <br><br>
 
 - Game Over Alert Box:<br><br>
 
-  ![Result](https://i.imgur.com/annx3QB.jpg)
+  ![Result](https://i.imgur.com/tun5TaS.png)
+
+- Options:<br><br>
+
+  ![Options](https://i.imgur.com/B1J4c4G.png)
+  <br><br>
