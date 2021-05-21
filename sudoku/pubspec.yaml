@@ -84,5 +84,4 @@ flutter:
 
   assets:
     - assets/icon/icon_foreground.png
-    - assets/icon/icon_square.png
     - assets/icon/icon_round.png
