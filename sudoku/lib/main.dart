@@ -160,7 +160,7 @@ class AfterSplashState extends State<AfterSplash> {
   }
 
   void checkResult() {
-    if (game.toString() == gameSolved.toString()) {
+    if (SudokuUtilities.isSolved(game)) {
       isButtonDisabled = !isButtonDisabled;
       gameOver = true;
       Timer(Duration(milliseconds: 500), () {
