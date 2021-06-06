@@ -8,7 +8,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
-import 'package:sudoku/Sudoku.dart';
+import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -183,26 +183,54 @@ class AfterSplashState extends State<AfterSplash> {
   }
 
   static List<List<List<int>>> getNewGame([String difficulty = 'easy']) {
-    Sudoku object = new Sudoku(difficulty);
+    int emptySquares;
+    switch (difficulty) {
+      case 'test':
+        {
+          emptySquares = 2;
+        }
+        break;
+      case 'beginner':
+        {
+          emptySquares = 18;
+        }
+        break;
+      case 'easy':
+        {
+          emptySquares = 27;
+        }
+        break;
+      case 'medium':
+        {
+          emptySquares = 36;
+        }
+        break;
+      case 'hard':
+        {
+          emptySquares = 54;
+        }
+        break;
+    }
+    SudokuGenerator object = new SudokuGenerator(emptySquares);
     return [object.newSudoku, object.newSudokuSolved];
   }
 
   void setGame(int mode, [String difficulty = 'easy']) {
     if (mode == 1) {
       game = new List.generate(9, (i) => [0, 0, 0, 0, 0, 0, 0, 0, 0]);
-      gameCopy = Sudoku.copyGrid(game);
-      gameSolved = Sudoku.copyGrid(game);
+      gameCopy = SudokuUtilities.copySudoku(game);
+      gameSolved = SudokuUtilities.copySudoku(game);
     } else {
       gameList = getNewGame(difficulty);
       game = gameList[0];
-      gameCopy = Sudoku.copyGrid(game);
+      gameCopy = SudokuUtilities.copySudoku(game);
       gameSolved = gameList[1];
     }
   }
 
   void showSolution() {
     setState(() {
-      game = Sudoku.copyGrid(gameSolved);
+      game = SudokuUtilities.copySudoku(gameSolved);
       isButtonDisabled =
           !isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = true;
@@ -220,7 +248,7 @@ class AfterSplashState extends State<AfterSplash> {
 
   void restartGame() {
     setState(() {
-      game = Sudoku.copyGrid(gameCopy);
+      game = SudokuUtilities.copySudoku(gameCopy);
       isButtonDisabled =
           isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = false;

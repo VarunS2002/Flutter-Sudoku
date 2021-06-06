@@ -24,6 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Sudoku Logic
+  sudoku_solver_generator: ^1.0.0
+
   # Saving Preferences Locally
   shared_preferences: ^2.0.3
 
