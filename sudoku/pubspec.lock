@@ -279,7 +279,7 @@ packages:
       name: sudoku_solver_generator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0+2"
+    version: "1.1.0"
   term_glyph:
     dependency: transitive
     description:
