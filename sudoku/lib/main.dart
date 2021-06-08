@@ -160,25 +160,29 @@ class AfterSplashState extends State<AfterSplash> {
   }
 
   void checkResult() {
-    if (SudokuUtilities.isSolved(game)) {
-      isButtonDisabled = !isButtonDisabled;
-      gameOver = true;
-      Timer(Duration(milliseconds: 500), () {
-        showAnimatedDialog<void>(
-            animationType: DialogTransitionType.fadeScale,
-            barrierDismissible: true,
-            duration: Duration(milliseconds: 350),
-            context: context,
-            builder: (_) => AlertGameOver()).whenComplete(() {
-          if (AlertGameOver.newGame) {
-            newGame();
-            AlertGameOver.newGame = false;
-          } else if (AlertGameOver.restartGame) {
-            restartGame();
-            AlertGameOver.restartGame = false;
-          }
+    try {
+      if (SudokuUtilities.isSolved(game)) {
+        isButtonDisabled = !isButtonDisabled;
+        gameOver = true;
+        Timer(Duration(milliseconds: 500), () {
+          showAnimatedDialog<void>(
+              animationType: DialogTransitionType.fadeScale,
+              barrierDismissible: true,
+              duration: Duration(milliseconds: 350),
+              context: context,
+              builder: (_) => AlertGameOver()).whenComplete(() {
+            if (AlertGameOver.newGame) {
+              newGame();
+              AlertGameOver.newGame = false;
+            } else if (AlertGameOver.restartGame) {
+              restartGame();
+              AlertGameOver.restartGame = false;
+            }
+          });
         });
-      });
+      }
+    } on InvalidSudokuConfigurationException {
+      return;
     }
   }
 
