@@ -28,7 +28,7 @@ dependencies:
   sudoku_solver_generator: ^1.1.0
 
   # Saving Preferences Locally
-  shared_preferences: ^2.0.3
+  shared_preferences: ^2.0.6
 
   # Animated Alert Dialogs
   flutter_animated_dialog: ^2.0.0
@@ -37,7 +37,7 @@ dependencies:
   splashscreen: ^1.3.5
 
   # Hyperlinks
-  url_launcher: ^6.0.2
+  url_launcher: ^6.0.6
 
 dev_dependencies:
   flutter_test:
