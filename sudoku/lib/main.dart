@@ -338,6 +338,9 @@ class AfterSplashState extends State<AfterSplash> {
                     AlertNumbersState.number = null;
                   });
                 },
+          onLongPress: isButtonDisabled || gameCopy[k][i] != 0
+              ? null
+              : () => callback([k, i], 0),
           style: ButtonStyle(
             backgroundColor:
                 MaterialStateProperty.all<Color>(buttonColor(k, i)),
@@ -394,9 +397,12 @@ class AfterSplashState extends State<AfterSplash> {
     setState(() {
       if (number == null) {
         return;
+      } else if (number == 0) {
+        game[index[0]][index[1]] = number;
+      } else {
+        game[index[0]][index[1]] = number;
+        checkResult();
       }
-      game[index[0]][index[1]] = number;
-      checkResult();
     });
   }
 
