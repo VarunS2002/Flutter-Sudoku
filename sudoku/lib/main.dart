@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-import 'package:splashscreen/splashscreen.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
@@ -20,58 +19,43 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return FutureBuilder(
+      // Replace the 2 second delay with your initialization code:
+      future: Future.delayed(Duration(seconds: 2)),
+      builder: (context, AsyncSnapshot snapshot) {
+        // Show splash screen while waiting for app resources to load:
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return MaterialApp(debugShowCheckedModeBanner: false, home: Splash());
+        } else {
+          // Loading is done, return the app:
+          return MaterialApp(
+            title: 'Sudoku',
+            debugShowCheckedModeBanner: true,
+            theme: ThemeData(
+              primarySwatch: Styles.primaryColor,
+            ),
+            home: HomePage(),
+          );
+        }
+      },
+    );
+    /*return MaterialApp(
       title: 'Sudoku',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
         primarySwatch: Styles.primaryColor,
       ),
-      home: MyHomePage(),
-    );
+      home: HomePage(),
+    );*/
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-
+class HomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<StatefulWidget> createState() => HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new SplashScreen(
-      seconds: 2,
-      navigateAfterSeconds: AfterSplash(),
-      title: new Text(
-        '\nSudoku',
-        style: new TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 25.0, color: Styles.fg),
-      ),
-      image: new Image.asset('assets/icon/icon_foreground.png'),
-      photoSize: 50,
-      backgroundColor: Styles.bg,
-      loaderColor: Styles.primaryColor,
-      loadingText: Text(
-        'VarunS2002',
-        style: TextStyle(color: Colors.grey),
-      ),
-    );
-  }
-}
-
-class AfterSplash extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => AfterSplashState();
-}
-
-class AfterSplashState extends State<AfterSplash> {
+class HomePageState extends State<HomePage> {
   bool firstRun = true;
   bool gameOver = false;
   int timesCalled = 0;
@@ -278,8 +262,8 @@ class AfterSplashState extends State<AfterSplash> {
 
   double buttonSize() {
     double size = 50;
-    if (AfterSplashState.platform.contains('android') ||
-        AfterSplashState.platform.contains('ios')) {
+    if (HomePageState.platform.contains('android') ||
+        HomePageState.platform.contains('ios')) {
       size = 38;
     }
     return size;
@@ -287,8 +271,8 @@ class AfterSplashState extends State<AfterSplash> {
 
   double buttonFontSize() {
     double size = 20;
-    if (AfterSplashState.platform.contains('android') ||
-        AfterSplashState.platform.contains('ios')) {
+    if (HomePageState.platform.contains('android') ||
+        HomePageState.platform.contains('ios')) {
       size = 16;
     }
     return size;
@@ -539,5 +523,89 @@ class AfterSplashState extends State<AfterSplash> {
               onPressed: () => showOptionModalSheet(context),
               child: Icon(Icons.menu_rounded),
             )));
+  }
+}
+
+class Splash extends StatelessWidget {
+  static bool showProgressIndicator = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: new InkWell(
+        child: new Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            new Container(
+              decoration: new BoxDecoration(
+                image: null,
+                color: Styles.bg,
+              ),
+            ),
+            new Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new Expanded(
+                  flex: 2,
+                  child: new Container(
+                      child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      new CircleAvatar(
+                        backgroundColor: Colors.transparent,
+                        child: Hero(
+                          tag: "splashscreenImage",
+                          child: new Container(
+                              child: Image.asset(
+                                  'assets/icon/icon_foreground.png')),
+                        ),
+                        radius: 50,
+                      ),
+                      new Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
+                      ),
+                      new Text('\nSudoku',
+                          style: new TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.0,
+                              color: Styles.fg))
+                    ],
+                  )),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      !showProgressIndicator
+                          ? Container()
+                          : CircularProgressIndicator(
+                              valueColor: new AlwaysStoppedAnimation<Color>(
+                                  Styles.primaryColor),
+                            ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                      ),
+                      Text(
+                        'VarunS2002',
+                        style: TextStyle(color: Colors.grey),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+
+    /*return Scaffold(
+      backgroundColor: Styles.dark,
+      body: Center(
+          child: Image.asset('assets/icon/icon_foreground.png',
+              height: MediaQuery.of(context).size.width * 0.333,
+              width: MediaQuery.of(context).size.width * 0.333)),
+    );*/
   }
 }
