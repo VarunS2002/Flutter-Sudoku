@@ -19,34 +19,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      // Replace the 2 second delay with your initialization code:
-      future: Future.delayed(Duration(seconds: 2)),
-      builder: (context, AsyncSnapshot snapshot) {
-        // Show splash screen while waiting for app resources to load:
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return MaterialApp(debugShowCheckedModeBanner: false, home: Splash());
-        } else {
-          // Loading is done, return the app:
-          return MaterialApp(
-            title: 'Sudoku',
-            debugShowCheckedModeBanner: true,
-            theme: ThemeData(
-              primarySwatch: Styles.primaryColor,
-            ),
-            home: HomePage(),
-          );
-        }
-      },
-    );
-    /*return MaterialApp(
+    return MaterialApp(
       title: 'Sudoku',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
         primarySwatch: Styles.primaryColor,
       ),
       home: HomePage(),
-    );*/
+    );
   }
 }
 
@@ -523,20 +503,5 @@ class HomePageState extends State<HomePage> {
               onPressed: () => showOptionModalSheet(context),
               child: Icon(Icons.menu_rounded),
             )));
-  }
-}
-
-class Splash extends StatelessWidget {
-  static bool showProgressIndicator = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Styles.dark,
-      body: Center(
-          child: Image.asset('assets/icon/icon_foreground.png',
-              height: MediaQuery.of(context).size.width * 0.333,
-              width: MediaQuery.of(context).size.width * 0.333)),
-    );
   }
 }
