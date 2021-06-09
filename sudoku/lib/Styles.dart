@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Styles {
   // #121212
-  static MaterialColor dark = MaterialColor(4279374354, {
+  static MaterialColor dark_grey = MaterialColor(4279374354, {
     50: Color(0xff7d7d7d),
     100: Color(0xff717171),
     200: Color(0xff595959),
@@ -16,7 +16,7 @@ class Styles {
   });
 
   // #FFFFFF
-  static MaterialColor light = MaterialColor(4294967295, {
+  static MaterialColor white = MaterialColor(4294967295, {
     50: Color(0xffffffff),
     100: Color(0xffffffff),
     200: Color(0xffffffff),
@@ -44,7 +44,7 @@ class Styles {
   });
 
   // #3880ff
-  static MaterialColor primaryColor = MaterialColor(4281893119, {
+  static MaterialColor light_blue = MaterialColor(4281893119, {
     50: Color(0xff92b9ff),
     100: Color(0xff88b3ff),
     200: Color(0xff74a6ff),
@@ -58,7 +58,7 @@ class Styles {
   });
 
   // #eb445a
-  static MaterialColor secondaryColor = MaterialColor(4293608538, {
+  static MaterialColor light_red = MaterialColor(4293608538, {
     50: Color(0xfff498a4),
     100: Color(0xfff38f9c),
     200: Color(0xfff17c8c),
@@ -71,7 +71,9 @@ class Styles {
     900: Color(0xff8d2936)
   });
 
-  static MaterialColor bg = dark;
+  static MaterialColor bg = dark_grey;
   static MaterialColor bg_2 = grey;
-  static MaterialColor fg = light;
+  static MaterialColor fg = white;
+  static MaterialColor primaryColor = light_blue;
+  static MaterialColor secondaryColor = light_red;
 }

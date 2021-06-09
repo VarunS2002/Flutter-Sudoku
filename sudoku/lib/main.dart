@@ -105,25 +105,25 @@ class HomePageState extends State<HomePage> {
     setState(() {
       if (currentTheme == 'light') {
         if (mode == 'switch') {
-          Styles.bg = Styles.dark;
+          Styles.bg = Styles.dark_grey;
           Styles.bg_2 = Styles.grey;
-          Styles.fg = Styles.light;
+          Styles.fg = Styles.white;
           currentTheme = 'dark';
         } else if (mode == 'set') {
-          Styles.bg = Styles.light;
-          Styles.bg_2 = Styles.light;
-          Styles.fg = Styles.dark;
+          Styles.bg = Styles.white;
+          Styles.bg_2 = Styles.white;
+          Styles.fg = Styles.dark_grey;
         }
       } else if (currentTheme == 'dark') {
         if (mode == 'switch') {
-          Styles.bg = Styles.light;
-          Styles.bg_2 = Styles.light;
-          Styles.fg = Styles.dark;
+          Styles.bg = Styles.white;
+          Styles.bg_2 = Styles.white;
+          Styles.fg = Styles.dark_grey;
           currentTheme = 'light';
         } else if (mode == 'set') {
-          Styles.bg = Styles.dark;
+          Styles.bg = Styles.dark_grey;
           Styles.bg_2 = Styles.grey;
-          Styles.fg = Styles.light;
+          Styles.fg = Styles.white;
         }
       }
       setPrefs('currentTheme');
@@ -235,7 +235,7 @@ class HomePageState extends State<HomePage> {
     if (([0, 1, 2].contains(k) && [3, 4, 5].contains(i)) ||
         ([3, 4, 5].contains(k) && [0, 1, 2, 6, 7, 8].contains(i)) ||
         ([6, 7, 8].contains(k) && [3, 4, 5].contains(i))) {
-      if (Styles.bg == Styles.dark) {
+      if (Styles.bg == Styles.dark_grey) {
         color = Styles.grey;
       } else {
         color = Colors.grey[300];
