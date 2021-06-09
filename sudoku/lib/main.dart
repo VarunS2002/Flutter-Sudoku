@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
+import 'package:sudoku/SplashScreenPage.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Styles.primaryColor,
       ),
-      home: HomePage(),
+      home: SplashScreenPage(),
     );
   }
 }
