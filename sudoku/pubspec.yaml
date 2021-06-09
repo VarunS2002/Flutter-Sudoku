@@ -39,6 +39,9 @@ dependencies:
   # Hyperlinks
   url_launcher: ^6.0.6
 
+  # Windows Title Bar
+  bitsdojo_window: ^0.1.1+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

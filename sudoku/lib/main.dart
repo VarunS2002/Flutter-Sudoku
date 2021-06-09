@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:sudoku/Styles.dart';
 import 'package:sudoku/Alerts.dart';
 import 'package:sudoku/SplashScreenPage.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sudoku',
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Styles.primaryColor,
       ),
@@ -52,6 +53,11 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    try {
+      doWhenWindowReady(() {
+        appWindow.minSize = Size(800, 800);
+      });
+    } on UnimplementedError {}
     getPrefs().whenComplete(() {
       if (currentDifficultyLevel == null) {
         currentDifficultyLevel = 'easy';
@@ -470,6 +476,12 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDesktop = ['windows', 'linux', 'macOS'].contains(
+            defaultTargetPlatform
+                .toString()
+                .replaceFirst("TargetPlatform.", "")
+                .toLowerCase()) &&
+        !kIsWeb;
     return new WillPopScope(
         onWillPop: () async {
           if (kIsWeb) {
@@ -486,10 +498,35 @@ class HomePageState extends State<HomePage> {
         },
         child: new Scaffold(
             backgroundColor: Styles.bg,
-            appBar: AppBar(
-              centerTitle: true,
-              title: Text('Sudoku'),
-            ),
+            appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(56.0),
+                child: isDesktop
+                    ? MoveWindow(
+                        child: AppBar(
+                          centerTitle: true,
+                          title: Text('Sudoku'),
+                          actions: [
+                            IconButton(
+                              icon: const Icon(Icons.minimize_outlined),
+                              padding: EdgeInsets.fromLTRB(8, 0, 8, 15),
+                              onPressed: () {
+                                appWindow.minimize();
+                              },
+                            ),
+                            IconButton(
+                              icon: const Icon(Icons.close_rounded),
+                              padding: EdgeInsets.fromLTRB(8, 8, 20, 8),
+                              onPressed: () {
+                                appWindow.close();
+                              },
+                            ),
+                          ],
+                        ),
+                      )
+                    : AppBar(
+                        centerTitle: true,
+                        title: Text('Sudoku'),
+                      )),
             body: Builder(builder: (builder) {
               return Center(
                 child: Column(
