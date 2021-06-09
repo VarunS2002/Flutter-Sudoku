@@ -532,80 +532,11 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new InkWell(
-        child: new Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            new Container(
-              decoration: new BoxDecoration(
-                image: null,
-                color: Styles.bg,
-              ),
-            ),
-            new Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Expanded(
-                  flex: 2,
-                  child: new Container(
-                      child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new CircleAvatar(
-                        backgroundColor: Colors.transparent,
-                        child: Hero(
-                          tag: "splashscreenImage",
-                          child: new Container(
-                              child: Image.asset(
-                                  'assets/icon/icon_foreground.png')),
-                        ),
-                        radius: 50,
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                      ),
-                      new Text('\nSudoku',
-                          style: new TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25.0,
-                              color: Styles.fg))
-                    ],
-                  )),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      !showProgressIndicator
-                          ? Container()
-                          : CircularProgressIndicator(
-                              valueColor: new AlwaysStoppedAnimation<Color>(
-                                  Styles.primaryColor),
-                            ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
-                      ),
-                      Text(
-                        'VarunS2002',
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-
-    /*return Scaffold(
       backgroundColor: Styles.dark,
       body: Center(
           child: Image.asset('assets/icon/icon_foreground.png',
               height: MediaQuery.of(context).size.width * 0.333,
               width: MediaQuery.of(context).size.width * 0.333)),
-    );*/
+    );
   }
 }
