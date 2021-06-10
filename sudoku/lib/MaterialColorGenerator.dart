@@ -27,13 +27,24 @@ class MaterialColorGenerator {
 
 void main() {
   // ignore: unused_local_variable
-  MaterialColor light_blue = MaterialColorGenerator.createMaterialColor(Color(0xFF3880FF)); // 3880ff
+  MaterialColor light_blue =
+      MaterialColorGenerator.createMaterialColor(Color(0xFF3880FF)); // 3880ff
   // ignore: unused_local_variable
-  MaterialColor light_red = MaterialColorGenerator.createMaterialColor(Color(0xFFEB445A)); // eb445a
+  MaterialColor purple =
+      MaterialColorGenerator.createMaterialColor(Color(0xFF5260FF)); // #5260ff
   // ignore: unused_local_variable
-  MaterialColor dark_grey = MaterialColorGenerator.createMaterialColor(Color(0xFF121212)); // 121212
+  MaterialColor green =
+      MaterialColorGenerator.createMaterialColor(Color(0xFF2DD36F)); // #2dd36f
   // ignore: unused_local_variable
-  MaterialColor white = MaterialColorGenerator.createMaterialColor(Color(0xFFFFFFFF)); // FFFFFF
+  MaterialColor light_red =
+      MaterialColorGenerator.createMaterialColor(Color(0xFFEB445A)); // eb445a
   // ignore: unused_local_variable
-  MaterialColor grey = MaterialColorGenerator.createMaterialColor(Color(0xFF303030)); // 303030
+  MaterialColor dark_grey =
+      MaterialColorGenerator.createMaterialColor(Color(0xFF121212)); // 121212
+  // ignore: unused_local_variable
+  MaterialColor white =
+      MaterialColorGenerator.createMaterialColor(Color(0xFFFFFFFF)); // FFFFFF
+  // ignore: unused_local_variable
+  MaterialColor grey =
+      MaterialColorGenerator.createMaterialColor(Color(0xFF303030)); // 303030
 }

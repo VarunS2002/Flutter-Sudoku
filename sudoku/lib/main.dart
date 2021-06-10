@@ -48,6 +48,7 @@ class HomePageState extends State<HomePage> {
   List<List<int>> gameSolved;
   static String currentDifficultyLevel;
   static String currentTheme;
+  static String currentAccentColor;
   static String platform;
 
   @override
@@ -67,8 +68,13 @@ class HomePageState extends State<HomePage> {
         currentTheme = 'dark';
         setPrefs('currentTheme');
       }
+      if (currentAccentColor == null) {
+        currentAccentColor = 'Blue';
+        setPrefs('currentAccentColor');
+      }
       newGame(currentDifficultyLevel);
       changeTheme('set');
+      changeAccentColor(currentAccentColor, true);
     });
     if (kIsWeb) {
       platform = 'web-' +
@@ -89,6 +95,7 @@ class HomePageState extends State<HomePage> {
     setState(() {
       currentDifficultyLevel = prefs.getString('currentDifficultyLevel');
       currentTheme = prefs.getString('currentTheme');
+      currentAccentColor = prefs.getString('currentAccentColor');
     });
   }
 
@@ -98,6 +105,8 @@ class HomePageState extends State<HomePage> {
       prefs.setString('currentDifficultyLevel', currentDifficultyLevel);
     } else if (property == 'currentTheme') {
       prefs.setString('currentTheme', currentTheme);
+    } else if (property == 'currentAccentColor') {
+      prefs.setString('currentAccentColor', currentAccentColor);
     }
   }
 
@@ -127,6 +136,21 @@ class HomePageState extends State<HomePage> {
         }
       }
       setPrefs('currentTheme');
+    });
+  }
+
+  void changeAccentColor(String color, [bool firstRun = false]) {
+    setState(() {
+      if (color == 'Blue') {
+        Styles.primaryColor = Styles.light_blue;
+      } else if (color == 'Purple') {
+        Styles.primaryColor = Styles.purple;
+      } else if (color == 'Green') {
+        Styles.primaryColor = Styles.green;
+      }
+      if (!firstRun) {
+        setPrefs('currentAccentColor');
+      }
     });
   }
 
@@ -455,6 +479,33 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
+                leading: Icon(Icons.color_lens_outlined, color: Styles.fg),
+                title: Text('Change Accent Color', style: customStyle),
+                onTap: () {
+                  Navigator.pop(context);
+                  Timer(
+                      Duration(milliseconds: 200),
+                      () => showAnimatedDialog<void>(
+                              animationType: DialogTransitionType.fadeScale,
+                              barrierDismissible: true,
+                              duration: Duration(milliseconds: 350),
+                              context: outerContext,
+                              builder: (_) => AlertAccentColorsState(
+                                  currentAccentColor)).whenComplete(() {
+                            if (AlertAccentColorsState.accentColor != null) {
+                              Timer(Duration(milliseconds: 300), () {
+                                currentAccentColor =
+                                    AlertAccentColorsState.accentColor;
+                                changeAccentColor(
+                                    currentAccentColor.toString());
+                                AlertAccentColorsState.accentColor = null;
+                                setPrefs('currentAccentColor');
+                              });
+                            }
+                          }));
+                },
+              ),
+              ListTile(
                 leading: Icon(Icons.info_outline_rounded, color: Styles.fg),
                 title: Text('About', style: customStyle),
                 onTap: () {
@@ -505,6 +556,7 @@ class HomePageState extends State<HomePage> {
                         child: AppBar(
                           centerTitle: true,
                           title: Text('Sudoku'),
+                          backgroundColor: Styles.primaryColor,
                           actions: [
                             IconButton(
                               icon: const Icon(Icons.minimize_outlined),
@@ -526,6 +578,7 @@ class HomePageState extends State<HomePage> {
                     : AppBar(
                         centerTitle: true,
                         title: Text('Sudoku'),
+                        backgroundColor: Styles.primaryColor,
                       )),
             body: Builder(builder: (builder) {
               return Center(

@@ -247,6 +247,74 @@ class AlertNumbers extends State<AlertNumbersState> {
   }
 }
 
+// ignore: must_be_immutable
+class AlertAccentColorsState extends StatefulWidget {
+  String currentAccentColor;
+
+  AlertAccentColorsState(String currentAccentColor) {
+    this.currentAccentColor = currentAccentColor;
+  }
+
+  static get accentColor {
+    return AlertAccentColors.accentColor;
+  }
+
+  static set accentColor(String color) {
+    AlertAccentColors.accentColor = color;
+  }
+
+  @override
+  AlertAccentColors createState() => AlertAccentColors(this.currentAccentColor);
+}
+
+class AlertAccentColors extends State<AlertAccentColorsState> {
+  static String accentColor;
+  static final List<String> accentColors = [
+    'Blue',
+    'Purple',
+    'Green'
+  ];
+  String currentAccentColor;
+
+  AlertAccentColors(String currentAccentColor) {
+    this.currentAccentColor = currentAccentColor;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SimpleDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      title: Center(
+          child: Text(
+        'Select Accent Color',
+        style: TextStyle(color: Styles.fg),
+      )),
+      backgroundColor: Styles.bg_2,
+      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      children: <Widget>[
+        for (String color in accentColors)
+          SimpleDialogOption(
+            onPressed: () {
+              if (color != this.currentAccentColor) {
+                setState(() {
+                  accentColor = color;
+                });
+              }
+              Navigator.pop(context);
+            },
+            child: Text(color,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 15,
+                    color: color == this.currentAccentColor
+                        ? Styles.primaryColor
+                        : Styles.fg)),
+          ),
+      ],
+    );
+  }
+}
+
 class AlertAbout extends StatelessWidget {
   static const String authorUrl = "https://www.github.com/VarunS2002/";
   static const String sourceUrl =

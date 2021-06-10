@@ -57,6 +57,34 @@ class Styles {
     900: Color(0xff224d99)
   });
 
+  // #5260ff
+  static MaterialColor purple = MaterialColor(4283588863, {
+    50: Color(0xffa0a8ff),
+    100: Color(0xff97a0ff),
+    200: Color(0xff8690ff),
+    300: Color(0xff7580ff),
+    400: Color(0xff6370ff),
+    500: Color(0xff5260ff),
+    600: Color(0xff4a56e5),
+    700: Color(0xff424dcc),
+    800: Color(0xff3943b2),
+    900: Color(0xff313a99)
+  });
+
+  // #2dd36f
+  static MaterialColor green = MaterialColor(4281193327, {
+    50: Color(0xff8ce7b0),
+    100: Color(0xff81e5a9),
+    200: Color(0xff6ce09a),
+    300: Color(0xff57dc8c),
+    400: Color(0xff42d77d),
+    500: Color(0xff2dd36f),
+    600: Color(0xff28be64),
+    700: Color(0xff24a959),
+    800: Color(0xff1f944e),
+    900: Color(0xff1b7f43)
+  });
+
   // #eb445a
   static MaterialColor light_red = MaterialColor(4293608538, {
     50: Color(0xfff498a4),
