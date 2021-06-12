@@ -104,4 +104,10 @@ class Styles {
   static MaterialColor fg = white;
   static MaterialColor primaryColor = light_blue;
   static MaterialColor secondaryColor = light_red;
+
+  static final List<String> accentColors = [
+    'Blue',
+    'Purple',
+    'Green'
+  ];
 }
