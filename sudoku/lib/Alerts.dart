@@ -384,7 +384,7 @@ class AlertAbout extends StatelessWidget {
                   await launch(AlertAbout.releasesURL);
                 },
                 child: Text(
-                  'v2.2.0' + ' ',
+                  MyApp.versionNumber + ' ',
                   style: TextStyle(
                       color: Styles.primaryColor,
                       fontFamily: 'roboto',
