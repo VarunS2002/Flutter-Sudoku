@@ -319,6 +319,8 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
 
 class AlertAbout extends StatelessWidget {
   static const String authorUrl = "https://www.github.com/VarunS2002/";
+  static const String releasesUrl =
+      "https://github.com/VarunS2002/Flutter-Sudoku/releases/";
   static const String sourceUrl =
       "https://github.com/VarunS2002/Flutter-Sudoku/";
   static const String licenseUrl =
@@ -371,7 +373,26 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Version: v2.2.0' + ' ' + HomePageState.platform,
+                'Version: ',
+                style: TextStyle(
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
+              ),
+              InkWell(
+                onTap: () async {
+                  await launch(AlertAbout.releasesUrl);
+                },
+                child: Text(
+                  'v2.2.0' + ' ',
+                  style: TextStyle(
+                      color: Styles.primaryColor,
+                      fontFamily: 'roboto',
+                      fontSize: 15),
+                ),
+              ),
+              Text(
+                HomePageState.platform,
                 style: TextStyle(
                     color: Styles.foregroundColor,
                     fontFamily: 'roboto',
