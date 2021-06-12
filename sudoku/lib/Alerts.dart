@@ -318,12 +318,12 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
 }
 
 class AlertAbout extends StatelessWidget {
-  static const String authorUrl = "https://www.github.com/VarunS2002/";
-  static const String releasesUrl =
+  static const String authorURL = "https://www.github.com/VarunS2002/";
+  static const String releasesURL =
       "https://github.com/VarunS2002/Flutter-Sudoku/releases/";
-  static const String sourceUrl =
+  static const String sourceURL =
       "https://github.com/VarunS2002/Flutter-Sudoku/";
-  static const String licenseUrl =
+  static const String licenseURL =
       "https://github.com/VarunS2002/Flutter-Sudoku/blob/master/LICENSE";
 
   @override
@@ -381,7 +381,7 @@ class AlertAbout extends StatelessWidget {
               ),
               InkWell(
                 onTap: () async {
-                  await launch(AlertAbout.releasesUrl);
+                  await launch(AlertAbout.releasesURL);
                 },
                 child: Text(
                   'v2.2.0' + ' ',
@@ -424,7 +424,7 @@ class AlertAbout extends StatelessWidget {
               ),
               InkWell(
                 onTap: () async {
-                  await launch(AlertAbout.authorUrl);
+                  await launch(AlertAbout.authorURL);
                 },
                 child: Text(
                   'VarunS2002',
@@ -460,7 +460,7 @@ class AlertAbout extends StatelessWidget {
               ),
               InkWell(
                 onTap: () async {
-                  await launch(AlertAbout.licenseUrl);
+                  await launch(AlertAbout.licenseURL);
                 },
                 child: Text(
                   'GNU GPLv3',
@@ -489,7 +489,7 @@ class AlertAbout extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () async {
-                  await launch(AlertAbout.sourceUrl);
+                  await launch(AlertAbout.sourceURL);
                 },
                 child: Text(
                   'Source Code',
