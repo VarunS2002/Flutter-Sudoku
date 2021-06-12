@@ -50,6 +50,7 @@ class HomePageState extends State<HomePage> {
   static String currentTheme;
   static String currentAccentColor;
   static String platform;
+  static bool isDesktop;
 
   @override
   void initState() {
@@ -82,11 +83,13 @@ class HomePageState extends State<HomePage> {
               .toString()
               .replaceFirst("TargetPlatform.", "")
               .toLowerCase();
+      isDesktop = false;
     } else {
       platform = defaultTargetPlatform
           .toString()
           .replaceFirst("TargetPlatform.", "")
           .toLowerCase();
+      isDesktop = ['windows', 'linux', 'macos'].contains(platform);
     }
   }
 
@@ -530,12 +533,6 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isDesktop = ['windows', 'linux', 'macOS'].contains(
-            defaultTargetPlatform
-                .toString()
-                .replaceFirst("TargetPlatform.", "")
-                .toLowerCase()) &&
-        !kIsWeb;
     return new WillPopScope(
         onWillPop: () async {
           if (kIsWeb) {
