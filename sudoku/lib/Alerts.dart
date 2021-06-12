@@ -274,7 +274,7 @@ class AlertAccentColorsState extends StatefulWidget {
 
 class AlertAccentColors extends State<AlertAccentColorsState> {
   static String accentColor;
-  static final List<String> accentColors = [...Styles.accentColors];
+  static final List<String> accentColors = [...Styles.accentColors.keys];
   String currentAccentColor;
 
   AlertAccentColors(String currentAccentColor) {

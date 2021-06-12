@@ -143,15 +143,16 @@ class HomePageState extends State<HomePage> {
 
   void changeAccentColor(String color, [bool firstRun = false]) {
     setState(() {
-      if (color == 'Blue') {
-        Styles.primaryColor = Styles.light_blue;
-      } else if (color == 'Purple') {
-        Styles.primaryColor = Styles.purple;
-      } else if (color == 'Green') {
-        Styles.primaryColor = Styles.green;
+      if (Styles.accentColors.keys.contains(color)) {
+        Styles.primaryColor = Styles.accentColors[color];
       } else {
         currentAccentColor = 'Blue';
-        Styles.primaryColor = Styles.light_blue;
+        Styles.primaryColor = Styles.accentColors[color];
+      }
+      if (color == 'Red') {
+        Styles.secondaryColor = Styles.orange;
+      } else {
+        Styles.secondaryColor = Styles.lightRed;
       }
       if (!firstRun) {
         setPrefs('currentAccentColor');
