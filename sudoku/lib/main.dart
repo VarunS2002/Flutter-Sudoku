@@ -147,6 +147,9 @@ class HomePageState extends State<HomePage> {
         Styles.primaryColor = Styles.purple;
       } else if (color == 'Green') {
         Styles.primaryColor = Styles.green;
+      } else {
+        currentAccentColor = 'Blue';
+        Styles.primaryColor = Styles.light_blue;
       }
       if (!firstRun) {
         setPrefs('currentAccentColor');
