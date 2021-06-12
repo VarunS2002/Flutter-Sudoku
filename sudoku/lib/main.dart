@@ -2,14 +2,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:sudoku/Styles.dart';
-import 'package:sudoku/Alerts.dart';
-import 'package:sudoku/SplashScreenPage.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
+import 'Styles.dart';
+import 'Alerts.dart';
+import 'SplashScreenPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
