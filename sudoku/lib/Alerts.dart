@@ -13,14 +13,14 @@ class AlertGameOver extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Styles.bg_2,
+      backgroundColor: Styles.secondaryBackgroundColor,
       title: Text(
         'Game Over',
-        style: TextStyle(color: Styles.fg),
+        style: TextStyle(color: Styles.foregroundColor),
       ),
       content: Text(
         'You successfully solved the Sudoku',
-        style: TextStyle(color: Styles.fg),
+        style: TextStyle(color: Styles.foregroundColor),
       ),
       actions: [
         TextButton(
@@ -89,9 +89,9 @@ class AlertDifficulty extends State<AlertDifficultyState> {
       title: Center(
           child: Text(
         'Select Difficulty Level',
-        style: TextStyle(color: Styles.fg),
+        style: TextStyle(color: Styles.foregroundColor),
       )),
-      backgroundColor: Styles.bg_2,
+      backgroundColor: Styles.secondaryBackgroundColor,
       contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       children: <Widget>[
         for (String level in difficulties)
@@ -110,7 +110,7 @@ class AlertDifficulty extends State<AlertDifficultyState> {
                     fontSize: 15,
                     color: level == this.currentDifficultyLevel
                         ? Styles.primaryColor
-                        : Styles.fg)),
+                        : Styles.foregroundColor)),
           ),
       ],
     );
@@ -122,14 +122,14 @@ class AlertExit extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Styles.bg_2,
+      backgroundColor: Styles.secondaryBackgroundColor,
       title: Text(
         'Exit Game',
-        style: TextStyle(color: Styles.fg),
+        style: TextStyle(color: Styles.foregroundColor),
       ),
       content: Text(
         'Are you sure you want to exit the game ?',
-        style: TextStyle(color: Styles.fg),
+        style: TextStyle(color: Styles.foregroundColor),
       ),
       actions: [
         TextButton(
@@ -194,7 +194,8 @@ class AlertNumbers extends State<AlertNumbersState> {
               })
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Styles.bg_2),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Styles.secondaryBackgroundColor),
               foregroundColor:
                   MaterialStateProperty.all<Color>(Styles.primaryColor),
               shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -202,7 +203,7 @@ class AlertNumbers extends State<AlertNumbersState> {
                 borderRadius: BorderRadius.circular(5),
               )),
               side: MaterialStateProperty.all<BorderSide>(BorderSide(
-                color: Styles.fg,
+                color: Styles.foregroundColor,
                 width: 1,
                 style: BorderStyle.solid,
               )),
@@ -237,11 +238,11 @@ class AlertNumbers extends State<AlertNumbersState> {
   Widget build(BuildContext context) {
     return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Styles.bg_2,
+        backgroundColor: Styles.secondaryBackgroundColor,
         title: Center(
             child: Text(
           'Choose a Number',
-          style: TextStyle(color: Styles.fg),
+          style: TextStyle(color: Styles.foregroundColor),
         )),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -288,9 +289,9 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
       title: Center(
           child: Text(
         'Select Accent Color',
-        style: TextStyle(color: Styles.fg),
+        style: TextStyle(color: Styles.foregroundColor),
       )),
-      backgroundColor: Styles.bg_2,
+      backgroundColor: Styles.secondaryBackgroundColor,
       contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       children: <Widget>[
         for (String color in accentColors)
@@ -309,7 +310,7 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
                     fontSize: 15,
                     color: color == this.currentAccentColor
                         ? Styles.primaryColor
-                        : Styles.fg)),
+                        : Styles.foregroundColor)),
           ),
       ],
     );
@@ -327,11 +328,11 @@ class AlertAbout extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Styles.bg_2,
+      backgroundColor: Styles.secondaryBackgroundColor,
       title: Center(
         child: Text(
           'About',
-          style: TextStyle(color: Styles.fg),
+          style: TextStyle(color: Styles.foregroundColor),
         ),
       ),
       content: Column(
@@ -347,7 +348,7 @@ class AlertAbout extends StatelessWidget {
               Text(
                 '   Sudoku',
                 style: TextStyle(
-                    color: Styles.fg,
+                    color: Styles.foregroundColor,
                     fontFamily: 'roboto',
                     fontSize: 22,
                     fontWeight: FontWeight.bold),
@@ -360,7 +361,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 '                ',
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
             ],
           ),
@@ -370,7 +373,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 'Version: v2.2.0' + ' ' + HomePageState.platform,
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
             ],
           ),
@@ -380,7 +385,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 '                ',
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
             ],
           ),
@@ -390,7 +397,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 'Author: ',
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
               InkWell(
                 onTap: () async {
@@ -412,7 +421,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 '                ',
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
             ],
           ),
@@ -422,7 +433,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 'License: ',
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
               InkWell(
                 onTap: () async {
@@ -444,7 +457,9 @@ class AlertAbout extends StatelessWidget {
               Text(
                 '                ',
                 style: TextStyle(
-                    color: Styles.fg, fontFamily: 'roboto', fontSize: 15),
+                    color: Styles.foregroundColor,
+                    fontFamily: 'roboto',
+                    fontSize: 15),
               ),
             ],
           ),

@@ -24,11 +24,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       title: new Text(
         '\nSudoku',
         style: new TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 25.0, color: Styles.fg),
+            fontWeight: FontWeight.bold,
+            fontSize: 25.0,
+            color: Styles.foregroundColor),
       ),
       image: new Image.asset('assets/icon/icon_foreground.png'),
       photoSize: 50,
-      backgroundColor: Styles.bg,
+      backgroundColor: Styles.primaryBackgroundColor,
       loaderColor: Styles.primaryColor,
       loadingText: Text(
         'VarunS2002',

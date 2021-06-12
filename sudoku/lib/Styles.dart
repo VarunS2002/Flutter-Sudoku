@@ -30,7 +30,7 @@ class Styles {
   });
 
   // #121212
-  static MaterialColor dark_grey = MaterialColor(4279374354, {
+  static MaterialColor darkGrey = MaterialColor(4279374354, {
     50: Color(0xff7d7d7d),
     100: Color(0xff717171),
     200: Color(0xff595959),
@@ -183,9 +183,9 @@ class Styles {
     900: Color(0xff148f53)
   });
 
-  static MaterialColor bg = dark_grey;
-  static MaterialColor bg_2 = grey;
-  static MaterialColor fg = white;
+  static MaterialColor primaryBackgroundColor = darkGrey;
+  static MaterialColor secondaryBackgroundColor = grey;
+  static MaterialColor foregroundColor = white;
   static MaterialColor primaryColor = ionicBlue;
   static MaterialColor secondaryColor = lightRed;
 

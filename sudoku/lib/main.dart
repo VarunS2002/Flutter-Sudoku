@@ -116,25 +116,25 @@ class HomePageState extends State<HomePage> {
     setState(() {
       if (currentTheme == 'light') {
         if (mode == 'switch') {
-          Styles.bg = Styles.dark_grey;
-          Styles.bg_2 = Styles.grey;
-          Styles.fg = Styles.white;
+          Styles.primaryBackgroundColor = Styles.darkGrey;
+          Styles.secondaryBackgroundColor = Styles.grey;
+          Styles.foregroundColor = Styles.white;
           currentTheme = 'dark';
         } else if (mode == 'set') {
-          Styles.bg = Styles.white;
-          Styles.bg_2 = Styles.white;
-          Styles.fg = Styles.dark_grey;
+          Styles.primaryBackgroundColor = Styles.white;
+          Styles.secondaryBackgroundColor = Styles.white;
+          Styles.foregroundColor = Styles.darkGrey;
         }
       } else if (currentTheme == 'dark') {
         if (mode == 'switch') {
-          Styles.bg = Styles.white;
-          Styles.bg_2 = Styles.white;
-          Styles.fg = Styles.dark_grey;
+          Styles.primaryBackgroundColor = Styles.white;
+          Styles.secondaryBackgroundColor = Styles.white;
+          Styles.foregroundColor = Styles.darkGrey;
           currentTheme = 'light';
         } else if (mode == 'set') {
-          Styles.bg = Styles.dark_grey;
-          Styles.bg_2 = Styles.grey;
-          Styles.fg = Styles.white;
+          Styles.primaryBackgroundColor = Styles.darkGrey;
+          Styles.secondaryBackgroundColor = Styles.grey;
+          Styles.foregroundColor = Styles.white;
         }
       }
       setPrefs('currentTheme');
@@ -265,13 +265,13 @@ class HomePageState extends State<HomePage> {
     if (([0, 1, 2].contains(k) && [3, 4, 5].contains(i)) ||
         ([3, 4, 5].contains(k) && [0, 1, 2, 6, 7, 8].contains(i)) ||
         ([6, 7, 8].contains(k) && [3, 4, 5].contains(i))) {
-      if (Styles.bg == Styles.dark_grey) {
+      if (Styles.primaryBackgroundColor == Styles.darkGrey) {
         color = Styles.grey;
       } else {
         color = Colors.grey[300];
       }
     } else {
-      color = Styles.bg;
+      color = Styles.primaryBackgroundColor;
     }
 
     return color;
@@ -348,7 +348,9 @@ class HomePageState extends State<HomePage> {
             foregroundColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.disabled)) {
-                return gameCopy[k][i] == 0 ? emptyColor : Styles.fg;
+                return gameCopy[k][i] == 0
+                    ? emptyColor
+                    : Styles.foregroundColor;
               }
               return game[k][i] == 0
                   ? buttonColor(k, i)
@@ -359,7 +361,7 @@ class HomePageState extends State<HomePage> {
               borderRadius: buttonEdgeRadius(k, i),
             )),
             side: MaterialStateProperty.all<BorderSide>(BorderSide(
-              color: Styles.fg,
+              color: Styles.foregroundColor,
               width: 1,
               style: BorderStyle.solid,
             )),
@@ -411,7 +413,7 @@ class HomePageState extends State<HomePage> {
     BuildContext outerContext = context;
     showModalBottomSheet(
         context: context,
-        backgroundColor: Styles.bg_2,
+        backgroundColor: Styles.secondaryBackgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(10),
@@ -419,11 +421,11 @@ class HomePageState extends State<HomePage> {
         ),
         builder: (context) {
           final TextStyle customStyle =
-              TextStyle(inherit: false, color: Styles.fg);
+              TextStyle(inherit: false, color: Styles.foregroundColor);
           return Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.refresh, color: Styles.fg),
+                leading: Icon(Icons.refresh, color: Styles.foregroundColor),
                 title: Text('Restart Game', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -431,7 +433,7 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.add_rounded, color: Styles.fg),
+                leading: Icon(Icons.add_rounded, color: Styles.foregroundColor),
                 title: Text('New Game', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -440,8 +442,8 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                leading:
-                    Icon(Icons.lightbulb_outline_rounded, color: Styles.fg),
+                leading: Icon(Icons.lightbulb_outline_rounded,
+                    color: Styles.foregroundColor),
                 title: Text('Show Solution', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -449,7 +451,8 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.build_outlined, color: Styles.fg),
+                leading:
+                    Icon(Icons.build_outlined, color: Styles.foregroundColor),
                 title: Text('Set Difficulty', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -475,7 +478,8 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.invert_colors_on_rounded, color: Styles.fg),
+                leading: Icon(Icons.invert_colors_on_rounded,
+                    color: Styles.foregroundColor),
                 title: Text('Switch Theme', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -485,7 +489,8 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.color_lens_outlined, color: Styles.fg),
+                leading: Icon(Icons.color_lens_outlined,
+                    color: Styles.foregroundColor),
                 title: Text('Change Accent Color', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -512,7 +517,8 @@ class HomePageState extends State<HomePage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.info_outline_rounded, color: Styles.fg),
+                leading: Icon(Icons.info_outline_rounded,
+                    color: Styles.foregroundColor),
                 title: Text('About', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
@@ -548,7 +554,7 @@ class HomePageState extends State<HomePage> {
           return true;
         },
         child: new Scaffold(
-            backgroundColor: Styles.bg,
+            backgroundColor: Styles.primaryBackgroundColor,
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(56.0),
                 child: isDesktop
@@ -595,7 +601,7 @@ class HomePageState extends State<HomePage> {
               );
             }),
             floatingActionButton: FloatingActionButton(
-              foregroundColor: Styles.bg,
+              foregroundColor: Styles.primaryBackgroundColor,
               backgroundColor: Styles.primaryColor,
               onPressed: () => showOptionModalSheet(context),
               child: Icon(Icons.menu_rounded),
