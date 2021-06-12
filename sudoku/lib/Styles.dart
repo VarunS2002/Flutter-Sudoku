@@ -170,7 +170,7 @@ class Styles {
   });
 
   // 21EF8B
-  static MaterialColor accExtendedGreen = MaterialColor(4280414091, {
+  static MaterialColor aospExtendedGreen = MaterialColor(4280414091, {
     50: Color(0xff85f6bf),
     100: Color(0xff7af5b9),
     200: Color(0xff64f4ae),
@@ -198,6 +198,6 @@ class Styles {
     'Pink': pink,
     'Red': oneplusRed,
     'Orange': orange,
-    'Green': accExtendedGreen,
+    'Green': aospExtendedGreen,
   };
 }
