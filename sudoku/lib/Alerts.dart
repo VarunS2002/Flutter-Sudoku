@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sudoku/main.dart';
@@ -145,7 +146,11 @@ class AlertExit extends StatelessWidget {
               foregroundColor:
                   MaterialStateProperty.all<Color>(Styles.primaryColor)),
           onPressed: () {
-            SystemNavigator.pop();
+            if (HomePageState.isDesktop) {
+              exit(0);
+            } else if (HomePageState.platform == 'android') {
+              SystemNavigator.pop();
+            }
           },
           child: Text('Yes'),
         ),

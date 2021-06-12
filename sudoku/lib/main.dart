@@ -569,7 +569,13 @@ class HomePageState extends State<HomePage> {
                               icon: const Icon(Icons.close_rounded),
                               padding: EdgeInsets.fromLTRB(8, 8, 20, 8),
                               onPressed: () {
-                                appWindow.close();
+                                showAnimatedDialog<void>(
+                                    animationType:
+                                        DialogTransitionType.fadeScale,
+                                    barrierDismissible: true,
+                                    duration: Duration(milliseconds: 350),
+                                    context: context,
+                                    builder: (_) => AlertExit());
                               },
                             ),
                           ],
