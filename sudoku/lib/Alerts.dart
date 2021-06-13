@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sudoku/main.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:sudoku/Styles.dart';
+import 'Styles.dart';
+import 'main.dart';
 
 class AlertGameOver extends StatelessWidget {
   static bool newGame = false;
