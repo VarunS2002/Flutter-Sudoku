@@ -68,7 +68,14 @@ class HomePageState extends State<HomePage> {
         setPrefs('currentDifficultyLevel');
       }
       if (currentTheme == null) {
-        currentTheme = 'dark';
+        if (MediaQuery.maybeOf(context)?.platformBrightness != null) {
+          currentTheme =
+              MediaQuery.of(context).platformBrightness == Brightness.light
+                  ? 'light'
+                  : 'dark';
+        } else {
+          currentTheme = 'dark';
+        }
         setPrefs('currentTheme');
       }
       if (currentAccentColor == null) {
