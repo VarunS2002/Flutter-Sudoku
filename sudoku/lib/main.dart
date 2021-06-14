@@ -219,8 +219,8 @@ class HomePageState extends State<HomePage> {
         }
         break;
     }
-    SudokuGenerator object = new SudokuGenerator(emptySquares);
-    return [object.newSudoku, object.newSudokuSolved];
+    SudokuGenerator generator = new SudokuGenerator(emptySquares: emptySquares);
+    return [generator.newSudoku, generator.newSudokuSolved];
   }
 
   void setGame(int mode, [String difficulty = 'easy']) {
