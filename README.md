@@ -8,7 +8,7 @@
 
 > [![APK: v2.4.0](https://img.shields.io/badge/APK-v2.4.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.4.0/Sudoku_2.4.0.apk)
 [![EXE: v2.4.0](https://img.shields.io/badge/EXE-v2.4.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.4.0/Sudoku_2.4.0.exe)
-[![Web: v2.4.0](https://img.shields.io/badge/Web-v2.4.0-brightgreen)](https://sudoku-vs2002.web.app/)
+[![Web: v2.4.1](https://img.shields.io/badge/Web-v2.4.1-brightgreen)](https://sudoku-vs2002.web.app/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This is a fully fledged Sudoku game written in Dart using Flutter.
