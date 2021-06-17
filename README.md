@@ -6,7 +6,9 @@
 
 ## [Downloads](https://github.com/VarunS2002/Flutter-Sudoku/releases)
 
-> [![APK: v2.2.0](https://img.shields.io/badge/APK-v2.2.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.2.0/Sudoku_2.2.0.apk)
+> [![APK: v2.4.0](https://img.shields.io/badge/APK-v2.4.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.4.0/Sudoku_2.4.0.apk)
+[![EXE: v2.4.0](https://img.shields.io/badge/EXE-v2.4.0-brightgreen)](https://github.com/VarunS2002/Flutter-Sudoku/releases/download/2.4.0/Sudoku_2.4.0.exe)
+[![Web: v2.4.0](https://img.shields.io/badge/Web-v2.4.0-brightgreen)](https://sudoku-vs2002.web.app/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This is a fully fledged Sudoku game written in Dart using Flutter.
@@ -124,13 +126,13 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 ## Features:
 
-- Uses a combination of a Sudoku generation and solving algorithm to create a unique game
-
 - Generates a New Game when you start the app
 
 - Clicking a box displays a dialog with buttons 1-9 to input in the box
 
 - Clickable buttons will initially have no number and will turn red after the first click
+
+- Long pressing a button will erase your input
 
 - After completely solving the grid, if the solution is correct it will alert you that you successfully solved the
   Sudoku
@@ -152,25 +154,31 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 
 - Dark and Light theme
 
+- Various Accent Colors to choose from
+
 - Material Design
 
 ## Note:
 
-- [flutter_animated_dialog](https://pub.dev/packages/flutter_animated_dialog) is used for animated alert dialogs
+- Dependencies:
+    - [sudoku_solver_generator](https://pub.dev/packages/sudoku_solver_generator) is used for the Sudoku logic
 
-- [shared_preferences](https://pub.dev/packages/shared_preferences) is used for saving preferences locally
+    - [flutter_animated_dialog](https://pub.dev/packages/flutter_animated_dialog) is used for animated alert dialogs
 
-- [splashscreen](https://pub.dev/packages/splashscreen) is used for the splashscreen
+    - [shared_preferences](https://pub.dev/packages/shared_preferences) is used for saving preferences locally
 
-- [url_launcher](https://pub.dev/packages/url_launcher) is used for hyperlinks
+    - [splashscreen](https://pub.dev/packages/splashscreen) is used for the splashscreen
 
-- Referred Algorithms:
+    - [flutter_native_splash](https://pub.dev/packages/flutter_native_splash) is used for generating the native
+      splashscreen files
 
-    - [Sudoku Generation Algorithm](https://www.geeksforgeeks.org/program-sudoku-generator/) in Java
+    - [url_launcher](https://pub.dev/packages/url_launcher) is used for opening hyperlinks
 
-    - [Sudoku Generation and Solving Algorithm](https://www.101computing.net/sudoku-generator-algorithm/) in Python
+    - [bitsdojo_window](https://pub.dev/packages/bitsdojo_window) is used for title bar improvements on desktop
 
-- Untested on iOS, MacOS, Linux and Fuchsia. Additional chnages might be required to work correctly
+- [NSIS](https://nsis.sourceforge.io/) is used for building the Windows installer
+
+- Untested on iOS, MacOS, Linux and Fuchsia. Additional changes might be required to work correctly
 
 - If you face any issue or have suggestions then feel free to open an issue on GitHub
 
@@ -194,8 +202,14 @@ It can be exported to Android, iOS, Fuchsia, Windows, Linux, MacOS, PWA or a Web
 - Game Over Alert Box:<br><br>
 
   ![Result](https://i.imgur.com/tun5TaS.png)
+  <br><br>
 
 - Options:<br><br>
 
-  ![Options](https://i.imgur.com/B1J4c4G.png)
+  ![Options](https://i.imgur.com/MA0E2Ey.png)
+  <br><br>
+
+- Windows with Violet Accent Color:<br><br>
+
+  ![Windows_Violet](https://i.imgur.com/nxIZDSV.png)
   <br><br>
