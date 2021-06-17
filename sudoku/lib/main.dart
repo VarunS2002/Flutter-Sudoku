@@ -19,7 +19,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static final String versionNumber = '2.4.0';
+  static final String versionNumber = kIsWeb ? '2.4.1' : '2.4.0';
 
   @override
   Widget build(BuildContext context) {
