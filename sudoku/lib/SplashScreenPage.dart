@@ -31,11 +31,15 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       image: new Image.asset('assets/icon/icon_foreground.png'),
       photoSize: 50,
       backgroundColor: Styles.primaryBackgroundColor,
+      useLoader: true,
       loaderColor: Styles.primaryColor,
       loadingText: Text(
         'VarunS2002',
         style: TextStyle(color: Colors.grey),
       ),
+      loadingTextPadding: const EdgeInsets.only(top: 10.0),
+      styleTextUnderTheLoader: const TextStyle(
+          fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black),
     );
   }
 }
