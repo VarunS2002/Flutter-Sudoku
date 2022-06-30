@@ -50,6 +50,7 @@ class HomePageState extends State<HomePage> {
   bool gameOver = false;
   int timesCalled = 0;
   bool isButtonDisabled = false;
+  bool isFABDisabled = false;
   late List<List<List<int>>> gameList;
   late List<List<int>> game;
   late List<List<int>> gameCopy;
@@ -266,12 +267,16 @@ class HomePageState extends State<HomePage> {
   }
 
   void newGame([String difficulty = 'easy']) {
+    setState(() {
+      isFABDisabled = !isFABDisabled;
+    });
     Future.delayed(const Duration(milliseconds: 200), () {
       setState(() {
         setGame(2, difficulty);
         isButtonDisabled =
             isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
         gameOver = false;
+        isFABDisabled = !isFABDisabled;
       });
     });
   }
@@ -630,8 +635,11 @@ class HomePageState extends State<HomePage> {
             }),
             floatingActionButton: FloatingActionButton(
               foregroundColor: Styles.primaryBackgroundColor,
-              backgroundColor: Styles.primaryColor,
-              onPressed: () => showOptionModalSheet(context),
+              backgroundColor: isFABDisabled
+                  ? Styles.primaryColor[900]
+                  : Styles.primaryColor,
+              onPressed:
+                  isFABDisabled ? null : () => showOptionModalSheet(context),
               child: const Icon(Icons.menu_rounded),
             )));
   }
