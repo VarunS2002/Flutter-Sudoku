@@ -326,6 +326,10 @@ class AlertAbout extends StatelessWidget {
   static const String licenseURL =
       "https://github.com/VarunS2002/Flutter-Sudoku/blob/master/LICENSE";
 
+  openURL(String url) async {
+    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -380,9 +384,7 @@ class AlertAbout extends StatelessWidget {
                     fontSize: 15),
               ),
               InkWell(
-                onTap: () async {
-                  await launch(AlertAbout.releasesURL);
-                },
+                onTap: () => openURL(releasesURL),
                 child: Text(
                   MyApp.versionNumber + ' ',
                   style: TextStyle(
@@ -423,9 +425,7 @@ class AlertAbout extends StatelessWidget {
                     fontSize: 15),
               ),
               InkWell(
-                onTap: () async {
-                  await launch(AlertAbout.authorURL);
-                },
+                onTap: () => openURL(authorURL),
                 child: Text(
                   'VarunS2002',
                   style: TextStyle(
@@ -459,9 +459,7 @@ class AlertAbout extends StatelessWidget {
                     fontSize: 15),
               ),
               InkWell(
-                onTap: () async {
-                  await launch(AlertAbout.licenseURL);
-                },
+                onTap: () => openURL(licenseURL),
                 child: Text(
                   'GNU GPLv3',
                   style: TextStyle(
@@ -488,9 +486,7 @@ class AlertAbout extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InkWell(
-                onTap: () async {
-                  await launch(AlertAbout.sourceURL);
-                },
+                onTap: () => openURL(sourceURL),
                 child: Text(
                   'Source Code',
                   style: TextStyle(
