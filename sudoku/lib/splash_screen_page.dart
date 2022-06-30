@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'styles.dart';
+
 import 'main.dart';
+import 'styles.dart';
 
 class SplashScreenPage extends StatefulWidget {
-  SplashScreenPage({Key key}) : super(key: key);
+  const SplashScreenPage({Key key}) : super(key: key);
 
   @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
+  SplashScreenPageState createState() => SplashScreenPageState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
+class SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
@@ -18,22 +19,22 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new SplashScreen(
+    return SplashScreen(
       seconds: 2,
       navigateAfterSeconds: HomePage(),
-      title: new Text(
+      title: Text(
         '\nSudoku',
-        style: new TextStyle(
+        style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 25.0,
             color: Styles.foregroundColor),
       ),
-      image: new Image.asset('assets/icon/icon_foreground.png'),
+      image: Image.asset('assets/icon/icon_foreground.png'),
       photoSize: 50,
       backgroundColor: Styles.primaryBackgroundColor,
       useLoader: true,
       loaderColor: Styles.primaryColor,
-      loadingText: Text(
+      loadingText: const Text(
         'VarunS2002',
         style: TextStyle(color: Colors.grey),
       ),
