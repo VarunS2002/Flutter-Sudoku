@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'Styles.dart';
+import 'styles.dart';
 import 'main.dart';
 
 class SplashScreenPage extends StatefulWidget {

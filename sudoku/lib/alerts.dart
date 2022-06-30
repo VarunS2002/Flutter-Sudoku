@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'Styles.dart';
+import 'styles.dart';
 import 'main.dart';
 
 class AlertGameOver extends StatelessWidget {

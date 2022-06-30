@@ -6,9 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
-import 'Styles.dart';
-import 'Alerts.dart';
-import 'SplashScreenPage.dart';
+import 'styles.dart';
+import 'alerts.dart';
+import 'splash_screen_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
