@@ -423,6 +423,7 @@ class HomePageState extends State<HomePage> {
     BuildContext outerContext = context;
     showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
         backgroundColor: Styles.secondaryBackgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
