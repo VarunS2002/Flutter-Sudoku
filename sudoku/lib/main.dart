@@ -200,7 +200,8 @@ class HomePageState extends State<HomePage> {
     }
   }
 
-  static List<List<List<int>>> getNewGame([String difficulty = 'easy']) {
+  static Future<List<List<List<int>>>> getNewGame(
+      [String difficulty = 'easy']) async {
     int emptySquares;
     switch (difficulty) {
       case 'test':
@@ -238,13 +239,13 @@ class HomePageState extends State<HomePage> {
     return [generator.newSudoku, generator.newSudokuSolved];
   }
 
-  void setGame(int mode, [String difficulty = 'easy']) {
+  void setGame(int mode, [String difficulty = 'easy']) async {
     if (mode == 1) {
       game = List.generate(9, (i) => [0, 0, 0, 0, 0, 0, 0, 0, 0]);
       gameCopy = SudokuUtilities.copySudoku(game);
       gameSolved = SudokuUtilities.copySudoku(game);
     } else {
-      gameList = getNewGame(difficulty);
+      gameList = await getNewGame(difficulty);
       game = gameList[0];
       gameCopy = SudokuUtilities.copySudoku(game);
       gameSolved = gameList[1];
@@ -261,11 +262,13 @@ class HomePageState extends State<HomePage> {
   }
 
   void newGame([String difficulty = 'easy']) {
-    setState(() {
-      setGame(2, difficulty);
-      isButtonDisabled =
-          isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
-      gameOver = false;
+    Future.delayed(const Duration(milliseconds: 200), () {
+      setState(() {
+        setGame(2, difficulty);
+        isButtonDisabled =
+            isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
+        gameOver = false;
+      });
     });
   }
 
