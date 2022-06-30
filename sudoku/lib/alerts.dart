@@ -1,13 +1,17 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'styles.dart';
+
 import 'main.dart';
+import 'styles.dart';
 
 class AlertGameOver extends StatelessWidget {
   static bool newGame = false;
   static bool restartGame = false;
+
+  const AlertGameOver({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +35,7 @@ class AlertGameOver extends StatelessWidget {
             Navigator.pop(context);
             restartGame = true;
           },
-          child: Text('Restart Game'),
+          child: const Text('Restart Game'),
         ),
         TextButton(
           style: ButtonStyle(
@@ -41,7 +45,7 @@ class AlertGameOver extends StatelessWidget {
             Navigator.pop(context);
             newGame = true;
           },
-          child: Text('New Game'),
+          child: const Text('New Game'),
         ),
       ],
     );
@@ -52,14 +56,14 @@ class AlertGameOver extends StatelessWidget {
 class AlertDifficultyState extends StatefulWidget {
   String currentDifficultyLevel;
 
-  AlertDifficultyState(String currentDifficultyLevel) {
-    this.currentDifficultyLevel = currentDifficultyLevel;
-  }
+  AlertDifficultyState(this.currentDifficultyLevel, {Key key})
+      : super(key: key);
 
   @override
-  AlertDifficulty createState() => AlertDifficulty(this.currentDifficultyLevel);
+  // ignore: no_logic_in_create_state
+  AlertDifficulty createState() => AlertDifficulty(currentDifficultyLevel);
 
-  static get difficulty {
+  static String get difficulty {
     return AlertDifficulty.difficulty;
   }
 
@@ -78,9 +82,7 @@ class AlertDifficulty extends State<AlertDifficultyState> {
   ];
   String currentDifficultyLevel;
 
-  AlertDifficulty(String currentDifficultyLevel) {
-    this.currentDifficultyLevel = currentDifficultyLevel;
-  }
+  AlertDifficulty(this.currentDifficultyLevel);
 
   @override
   Widget build(BuildContext context) {
@@ -92,12 +94,12 @@ class AlertDifficulty extends State<AlertDifficultyState> {
         style: TextStyle(color: Styles.foregroundColor),
       )),
       backgroundColor: Styles.secondaryBackgroundColor,
-      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       children: <Widget>[
         for (String level in difficulties)
           SimpleDialogOption(
             onPressed: () {
-              if (level != this.currentDifficultyLevel) {
+              if (level != currentDifficultyLevel) {
                 setState(() {
                   difficulty = level;
                 });
@@ -108,7 +110,7 @@ class AlertDifficulty extends State<AlertDifficultyState> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 15,
-                    color: level == this.currentDifficultyLevel
+                    color: level == currentDifficultyLevel
                         ? Styles.primaryColor
                         : Styles.foregroundColor)),
           ),
@@ -118,6 +120,8 @@ class AlertDifficulty extends State<AlertDifficultyState> {
 }
 
 class AlertExit extends StatelessWidget {
+  const AlertExit({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -139,7 +143,7 @@ class AlertExit extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Text('No'),
+          child: const Text('No'),
         ),
         TextButton(
           style: ButtonStyle(
@@ -152,7 +156,7 @@ class AlertExit extends StatelessWidget {
               SystemNavigator.pop();
             }
           },
-          child: Text('Yes'),
+          child: const Text('Yes'),
         ),
       ],
     );
@@ -160,10 +164,12 @@ class AlertExit extends StatelessWidget {
 }
 
 class AlertNumbersState extends StatefulWidget {
+  const AlertNumbersState({Key key}) : super(key: key);
+
   @override
   AlertNumbers createState() => AlertNumbers();
 
-  static get number {
+  static int get number {
     return AlertNumbers.number;
   }
 
@@ -211,7 +217,7 @@ class AlertNumbers extends State<AlertNumbersState> {
             child: Text(
               numbers.toString(),
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
           ),
         )
@@ -226,10 +232,10 @@ class AlertNumbers extends State<AlertNumbersState> {
   }
 
   List<Row> createRows() {
-    List<List> numberLists = [numberList1, numberList2, numberList3];
-    List<Row> rowList = new List<Row>.filled(3, null);
+    List<List<int>> numberLists = [numberList1, numberList2, numberList3];
+    List<Row> rowList = <Row>[];
     for (var i = 0; i <= 2; i++) {
-      rowList[i] = oneRow(numberLists[i]);
+      rowList.add(oneRow(numberLists[i]));
     }
     return rowList;
   }
@@ -257,11 +263,9 @@ class AlertNumbers extends State<AlertNumbersState> {
 class AlertAccentColorsState extends StatefulWidget {
   String currentAccentColor;
 
-  AlertAccentColorsState(String currentAccentColor) {
-    this.currentAccentColor = currentAccentColor;
-  }
+  AlertAccentColorsState(this.currentAccentColor, {Key key}) : super(key: key);
 
-  static get accentColor {
+  static String get accentColor {
     return AlertAccentColors.accentColor;
   }
 
@@ -270,7 +274,8 @@ class AlertAccentColorsState extends StatefulWidget {
   }
 
   @override
-  AlertAccentColors createState() => AlertAccentColors(this.currentAccentColor);
+  // ignore: no_logic_in_create_state
+  AlertAccentColors createState() => AlertAccentColors(currentAccentColor);
 }
 
 class AlertAccentColors extends State<AlertAccentColorsState> {
@@ -278,9 +283,7 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
   static final List<String> accentColors = [...Styles.accentColors.keys];
   String currentAccentColor;
 
-  AlertAccentColors(String currentAccentColor) {
-    this.currentAccentColor = currentAccentColor;
-  }
+  AlertAccentColors(this.currentAccentColor);
 
   @override
   Widget build(BuildContext context) {
@@ -292,12 +295,12 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
         style: TextStyle(color: Styles.foregroundColor),
       )),
       backgroundColor: Styles.secondaryBackgroundColor,
-      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       children: <Widget>[
         for (String color in accentColors)
           SimpleDialogOption(
             onPressed: () {
-              if (color != this.currentAccentColor) {
+              if (color != currentAccentColor) {
                 setState(() {
                   accentColor = color;
                 });
@@ -308,7 +311,7 @@ class AlertAccentColors extends State<AlertAccentColorsState> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 15,
-                    color: color == this.currentAccentColor
+                    color: color == currentAccentColor
                         ? Styles.primaryColor
                         : Styles.foregroundColor)),
           ),
@@ -325,6 +328,8 @@ class AlertAbout extends StatelessWidget {
       "https://github.com/VarunS2002/Flutter-Sudoku/";
   static const String licenseURL =
       "https://github.com/VarunS2002/Flutter-Sudoku/blob/master/LICENSE";
+
+  const AlertAbout({Key key}) : super(key: key);
 
   openURL(String url) async {
     await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
@@ -386,7 +391,7 @@ class AlertAbout extends StatelessWidget {
               InkWell(
                 onTap: () => openURL(releasesURL),
                 child: Text(
-                  MyApp.versionNumber + ' ',
+                  '${MyApp.versionNumber} ',
                   style: TextStyle(
                       color: Styles.primaryColor,
                       fontFamily: 'roboto',
