@@ -51,8 +51,17 @@ class HomePageState extends State<HomePage> {
   static String currentDifficultyLevel;
   static String currentTheme;
   static String currentAccentColor;
-  static String platform;
-  static bool isDesktop;
+  static String platform = () {
+    if (kIsWeb) {
+      return 'web-${defaultTargetPlatform.toString().replaceFirst("TargetPlatform.", "").toLowerCase()}';
+    } else {
+      return defaultTargetPlatform
+          .toString()
+          .replaceFirst("TargetPlatform.", "")
+          .toLowerCase();
+    }
+  }();
+  static bool isDesktop = ['windows', 'linux', 'macos'].contains(platform);
 
   @override
   void initState() {
@@ -86,20 +95,6 @@ class HomePageState extends State<HomePage> {
       changeTheme('set');
       changeAccentColor(currentAccentColor, true);
     });
-    if (kIsWeb) {
-      platform = 'web-' +
-          defaultTargetPlatform
-              .toString()
-              .replaceFirst("TargetPlatform.", "")
-              .toLowerCase();
-      isDesktop = false;
-    } else {
-      platform = defaultTargetPlatform
-          .toString()
-          .replaceFirst("TargetPlatform.", "")
-          .toLowerCase();
-      isDesktop = ['windows', 'linux', 'macos'].contains(platform);
-    }
   }
 
   Future<void> getPrefs() async {
