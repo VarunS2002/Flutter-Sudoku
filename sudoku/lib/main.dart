@@ -566,6 +566,7 @@ class HomePageState extends State<HomePage> {
                 preferredSize: const Size.fromHeight(56.0),
                 child: isDesktop
                     ? MoveWindow(
+                        onDoubleTap: () => appWindow.maximizeOrRestore(),
                         child: AppBar(
                           centerTitle: true,
                           title: Text('Sudoku'),
