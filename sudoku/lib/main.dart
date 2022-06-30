@@ -68,7 +68,8 @@ class HomePageState extends State<HomePage> {
     super.initState();
     try {
       doWhenWindowReady(() {
-        appWindow.minSize = Size(800, 800);
+        appWindow.alignment = Alignment.center;
+        appWindow.minSize = const Size(625, 625);
       });
     } on UnimplementedError {}
     getPrefs().whenComplete(() {
