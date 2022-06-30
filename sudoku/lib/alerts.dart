@@ -11,7 +11,7 @@ class AlertGameOver extends StatelessWidget {
   static bool newGame = false;
   static bool restartGame = false;
 
-  const AlertGameOver({Key key}) : super(key: key);
+  const AlertGameOver({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,24 +56,25 @@ class AlertGameOver extends StatelessWidget {
 class AlertDifficultyState extends StatefulWidget {
   String currentDifficultyLevel;
 
-  AlertDifficultyState(this.currentDifficultyLevel, {Key key})
+  AlertDifficultyState(this.currentDifficultyLevel, {Key? key})
       : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
   AlertDifficulty createState() => AlertDifficulty(currentDifficultyLevel);
 
-  static String get difficulty {
+  static String? get difficulty {
     return AlertDifficulty.difficulty;
   }
 
-  static set difficulty(String level) {
+  static set difficulty(String? level) {
     AlertDifficulty.difficulty = level;
   }
 }
 
 class AlertDifficulty extends State<AlertDifficultyState> {
-  static String difficulty;
+  // ignore: avoid_init_to_null
+  static String? difficulty = null;
   static final List<String> difficulties = [
     'beginner',
     'easy',
@@ -120,7 +121,7 @@ class AlertDifficulty extends State<AlertDifficultyState> {
 }
 
 class AlertExit extends StatelessWidget {
-  const AlertExit({Key key}) : super(key: key);
+  const AlertExit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -164,23 +165,24 @@ class AlertExit extends StatelessWidget {
 }
 
 class AlertNumbersState extends StatefulWidget {
-  const AlertNumbersState({Key key}) : super(key: key);
+  const AlertNumbersState({Key? key}) : super(key: key);
 
   @override
   AlertNumbers createState() => AlertNumbers();
 
-  static int get number {
+  static int? get number {
     return AlertNumbers.number;
   }
 
-  static set number(int number) {
+  static set number(int? number) {
     AlertNumbers.number = number;
   }
 }
 
 class AlertNumbers extends State<AlertNumbersState> {
-  static int number;
-  int numberSelected;
+  // ignore: avoid_init_to_null
+  static int? number = null;
+  late int numberSelected;
   static final List<int> numberList1 = [1, 2, 3];
   static final List<int> numberList2 = [4, 5, 6];
   static final List<int> numberList3 = [7, 8, 9];
@@ -263,13 +265,13 @@ class AlertNumbers extends State<AlertNumbersState> {
 class AlertAccentColorsState extends StatefulWidget {
   String currentAccentColor;
 
-  AlertAccentColorsState(this.currentAccentColor, {Key key}) : super(key: key);
+  AlertAccentColorsState(this.currentAccentColor, {Key? key}) : super(key: key);
 
-  static String get accentColor {
+  static String? get accentColor {
     return AlertAccentColors.accentColor;
   }
 
-  static set accentColor(String color) {
+  static set accentColor(String? color) {
     AlertAccentColors.accentColor = color;
   }
 
@@ -279,7 +281,8 @@ class AlertAccentColorsState extends StatefulWidget {
 }
 
 class AlertAccentColors extends State<AlertAccentColorsState> {
-  static String accentColor;
+  // ignore: avoid_init_to_null
+  static String? accentColor = null;
   static final List<String> accentColors = [...Styles.accentColors.keys];
   String currentAccentColor;
 
@@ -329,7 +332,7 @@ class AlertAbout extends StatelessWidget {
   static const String licenseURL =
       "https://github.com/VarunS2002/Flutter-Sudoku/blob/master/LICENSE";
 
-  const AlertAbout({Key key}) : super(key: key);
+  const AlertAbout({Key? key}) : super(key: key);
 
   openURL(String url) async {
     await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);

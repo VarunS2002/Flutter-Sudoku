@@ -5,7 +5,7 @@ import 'main.dart';
 import 'styles.dart';
 
 class SplashScreenPage extends StatefulWidget {
-  const SplashScreenPage({Key key}) : super(key: key);
+  const SplashScreenPage({Key? key}) : super(key: key);
 
   @override
   SplashScreenPageState createState() => SplashScreenPageState();
@@ -21,7 +21,7 @@ class SplashScreenPageState extends State<SplashScreenPage> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      navigateAfterSeconds: HomePage(),
+      navigateAfterSeconds: const HomePage(),
       title: Text(
         '\nSudoku',
         style: TextStyle(

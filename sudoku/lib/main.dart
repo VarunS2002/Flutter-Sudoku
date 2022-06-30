@@ -21,7 +21,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   static const String versionNumber = '2.4.1';
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => HomePageState();
@@ -50,13 +50,13 @@ class HomePageState extends State<HomePage> {
   bool gameOver = false;
   int timesCalled = 0;
   bool isButtonDisabled = false;
-  List<List<List<int>>> gameList;
-  List<List<int>> game;
-  List<List<int>> gameCopy;
-  List<List<int>> gameSolved;
-  static String currentDifficultyLevel;
-  static String currentTheme;
-  static String currentAccentColor;
+  late List<List<List<int>>> gameList;
+  late List<List<int>> game;
+  late List<List<int>> gameCopy;
+  late List<List<int>> gameSolved;
+  static String? currentDifficultyLevel;
+  static String? currentTheme;
+  static String? currentAccentColor;
   static String platform = () {
     if (kIsWeb) {
       return 'web-${defaultTargetPlatform.toString().replaceFirst("TargetPlatform.", "").toLowerCase()}';
@@ -99,9 +99,9 @@ class HomePageState extends State<HomePage> {
         currentAccentColor = 'Blue';
         setPrefs('currentAccentColor');
       }
-      newGame(currentDifficultyLevel);
+      newGame(currentDifficultyLevel!);
       changeTheme('set');
-      changeAccentColor(currentAccentColor, true);
+      changeAccentColor(currentAccentColor!, true);
     });
   }
 
@@ -117,11 +117,11 @@ class HomePageState extends State<HomePage> {
   setPrefs(String property) async {
     final prefs = await SharedPreferences.getInstance();
     if (property == 'currentDifficultyLevel') {
-      prefs.setString('currentDifficultyLevel', currentDifficultyLevel);
+      prefs.setString('currentDifficultyLevel', currentDifficultyLevel!);
     } else if (property == 'currentTheme') {
-      prefs.setString('currentTheme', currentTheme);
+      prefs.setString('currentTheme', currentTheme!);
     } else if (property == 'currentAccentColor') {
-      prefs.setString('currentAccentColor', currentAccentColor);
+      prefs.setString('currentAccentColor', currentAccentColor!);
     }
   }
 
@@ -157,10 +157,10 @@ class HomePageState extends State<HomePage> {
   void changeAccentColor(String color, [bool firstRun = false]) {
     setState(() {
       if (Styles.accentColors.keys.contains(color)) {
-        Styles.primaryColor = Styles.accentColors[color];
+        Styles.primaryColor = Styles.accentColors[color]!;
       } else {
         currentAccentColor = 'Blue';
-        Styles.primaryColor = Styles.accentColors[color];
+        Styles.primaryColor = Styles.accentColors[color]!;
       }
       if (color == 'Red') {
         Styles.secondaryColor = Styles.orange;
@@ -228,6 +228,11 @@ class HomePageState extends State<HomePage> {
           emptySquares = 54;
         }
         break;
+      default:
+        {
+          emptySquares = 2;
+        }
+        break;
     }
     SudokuGenerator generator = SudokuGenerator(emptySquares: emptySquares);
     return [generator.newSudoku, generator.newSudokuSolved];
@@ -281,7 +286,7 @@ class HomePageState extends State<HomePage> {
       if (Styles.primaryBackgroundColor == Styles.darkGrey) {
         color = Styles.grey;
       } else {
-        color = Colors.grey[300];
+        color = Colors.grey[300]!;
       }
     } else {
       color = Styles.primaryBackgroundColor;
@@ -332,7 +337,7 @@ class HomePageState extends State<HomePage> {
     } else {
       emptyColor = Styles.secondaryColor;
     }
-    List<SizedBox> buttonList = List<SizedBox>.filled(9, null);
+    List<SizedBox> buttonList = List<SizedBox>.filled(9, const SizedBox());
     for (var i = 0; i <= 8; i++) {
       var k = timesCalled;
       buttonList[i] = SizedBox(
@@ -403,14 +408,11 @@ class HomePageState extends State<HomePage> {
   }
 
   List<Row> createRows() {
-    List<Row> rowList = List<Row>.filled(9, null);
-    for (var i = 0; i <= 8; i++) {
-      rowList[i] = oneRow();
-    }
+    List<Row> rowList = List<Row>.generate(9, (i) => oneRow());
     return rowList;
   }
 
-  void callback(List<int> index, int number) {
+  void callback(List<int> index, int? number) {
     setState(() {
       if (number == null) {
         return;
@@ -453,7 +455,7 @@ class HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.pop(context);
                   Timer(const Duration(milliseconds: 200),
-                      () => newGame(currentDifficultyLevel));
+                      () => newGame(currentDifficultyLevel!));
                 },
               ),
               ListTile(
@@ -480,7 +482,7 @@ class HomePageState extends State<HomePage> {
                               duration: const Duration(milliseconds: 350),
                               context: outerContext,
                               builder: (_) => AlertDifficultyState(
-                                  currentDifficultyLevel)).whenComplete(() {
+                                  currentDifficultyLevel!)).whenComplete(() {
                             if (AlertDifficultyState.difficulty != null) {
                               Timer(const Duration(milliseconds: 300), () {
                                 newGame(
@@ -519,7 +521,7 @@ class HomePageState extends State<HomePage> {
                               duration: const Duration(milliseconds: 350),
                               context: outerContext,
                               builder: (_) => AlertAccentColorsState(
-                                  currentAccentColor)).whenComplete(() {
+                                  currentAccentColor!)).whenComplete(() {
                             if (AlertAccentColorsState.accentColor != null) {
                               Timer(const Duration(milliseconds: 300), () {
                                 currentAccentColor =
