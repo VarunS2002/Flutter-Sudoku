@@ -344,6 +344,7 @@ class HomePageState extends State<HomePage> {
     for (var i = 0; i <= 8; i++) {
       var k = timesCalled;
       buttonList[i] = SizedBox(
+        key: Key('grid-button-$k-$i'),
         width: buttonSize(),
         height: buttonSize(),
         child: TextButton(
