@@ -239,22 +239,26 @@ class HomePageState extends State<HomePage> {
     return [generator.newSudoku, generator.newSudokuSolved];
   }
 
+  static List<List<int>> copyGrid(List<List<int>> grid) {
+    return grid.map((row) => [...row]).toList();
+  }
+
   void setGame(int mode, [String difficulty = 'easy']) async {
     if (mode == 1) {
-      game = List.generate(9, (i) => [0, 0, 0, 0, 0, 0, 0, 0, 0]);
-      gameCopy = SudokuUtilities.copySudoku(game);
-      gameSolved = SudokuUtilities.copySudoku(game);
+      game = List.filled(9, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+      gameCopy = List.filled(9, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+      gameSolved = List.filled(9, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
     } else {
       gameList = await getNewGame(difficulty);
       game = gameList[0];
-      gameCopy = SudokuUtilities.copySudoku(game);
+      gameCopy = copyGrid(game);
       gameSolved = gameList[1];
     }
   }
 
   void showSolution() {
     setState(() {
-      game = SudokuUtilities.copySudoku(gameSolved);
+      game = copyGrid(gameSolved);
       isButtonDisabled =
           !isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = true;
@@ -274,7 +278,7 @@ class HomePageState extends State<HomePage> {
 
   void restartGame() {
     setState(() {
-      game = SudokuUtilities.copySudoku(gameCopy);
+      game = copyGrid(gameCopy);
       isButtonDisabled =
           isButtonDisabled ? !isButtonDisabled : isButtonDisabled;
       gameOver = false;
