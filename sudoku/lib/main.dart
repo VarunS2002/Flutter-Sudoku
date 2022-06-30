@@ -1,24 +1,28 @@
 import 'dart:async';
+
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
-import 'styles.dart';
+
 import 'alerts.dart';
 import 'splash_screen_page.dart';
+import 'styles.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   static const String versionNumber = '2.4.1';
 
   @override
@@ -29,12 +33,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Styles.primaryColor,
       ),
-      home: SplashScreenPage(),
+      home: const SplashScreenPage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => HomePageState();
 }
@@ -71,6 +77,7 @@ class HomePageState extends State<HomePage> {
         appWindow.alignment = Alignment.center;
         appWindow.minSize = const Size(625, 625);
       });
+      // ignore: empty_catches
     } on UnimplementedError {}
     getPrefs().whenComplete(() {
       if (currentDifficultyLevel == null) {
@@ -171,13 +178,13 @@ class HomePageState extends State<HomePage> {
       if (SudokuUtilities.isSolved(game)) {
         isButtonDisabled = !isButtonDisabled;
         gameOver = true;
-        Timer(Duration(milliseconds: 500), () {
+        Timer(const Duration(milliseconds: 500), () {
           showAnimatedDialog<void>(
               animationType: DialogTransitionType.fadeScale,
               barrierDismissible: true,
-              duration: Duration(milliseconds: 350),
+              duration: const Duration(milliseconds: 350),
               context: context,
-              builder: (_) => AlertGameOver()).whenComplete(() {
+              builder: (_) => const AlertGameOver()).whenComplete(() {
             if (AlertGameOver.newGame) {
               newGame();
               AlertGameOver.newGame = false;
@@ -222,13 +229,13 @@ class HomePageState extends State<HomePage> {
         }
         break;
     }
-    SudokuGenerator generator = new SudokuGenerator(emptySquares: emptySquares);
+    SudokuGenerator generator = SudokuGenerator(emptySquares: emptySquares);
     return [generator.newSudoku, generator.newSudokuSolved];
   }
 
   void setGame(int mode, [String difficulty = 'easy']) {
     if (mode == 1) {
-      game = new List.generate(9, (i) => [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+      game = List.generate(9, (i) => [0, 0, 0, 0, 0, 0, 0, 0, 0]);
       gameCopy = SudokuUtilities.copySudoku(game);
       gameSolved = SudokuUtilities.copySudoku(game);
     } else {
@@ -303,13 +310,13 @@ class HomePageState extends State<HomePage> {
 
   BorderRadiusGeometry buttonEdgeRadius(int k, int i) {
     if (k == 0 && i == 0) {
-      return BorderRadius.only(topLeft: Radius.circular(5));
+      return const BorderRadius.only(topLeft: Radius.circular(5));
     } else if (k == 0 && i == 8) {
-      return BorderRadius.only(topRight: Radius.circular(5));
+      return const BorderRadius.only(topRight: Radius.circular(5));
     } else if (k == 8 && i == 0) {
-      return BorderRadius.only(bottomLeft: Radius.circular(5));
+      return const BorderRadius.only(bottomLeft: Radius.circular(5));
     } else if (k == 8 && i == 8) {
-      return BorderRadius.only(bottomRight: Radius.circular(5));
+      return const BorderRadius.only(bottomRight: Radius.circular(5));
     }
     return BorderRadius.circular(0);
   }
@@ -325,7 +332,7 @@ class HomePageState extends State<HomePage> {
     } else {
       emptyColor = Styles.secondaryColor;
     }
-    List<SizedBox> buttonList = new List<SizedBox>.filled(9, null);
+    List<SizedBox> buttonList = List<SizedBox>.filled(9, null);
     for (var i = 0; i <= 8; i++) {
       var k = timesCalled;
       buttonList[i] = SizedBox(
@@ -336,11 +343,12 @@ class HomePageState extends State<HomePage> {
               ? null
               : () {
                   showAnimatedDialog<void>(
-                      animationType: DialogTransitionType.fade,
-                      barrierDismissible: true,
-                      duration: Duration(milliseconds: 300),
-                      context: context,
-                      builder: (_) => AlertNumbersState()).whenComplete(() {
+                          animationType: DialogTransitionType.fade,
+                          barrierDismissible: true,
+                          duration: const Duration(milliseconds: 300),
+                          context: context,
+                          builder: (_) => const AlertNumbersState())
+                      .whenComplete(() {
                     callback([k, i], AlertNumbersState.number);
                     AlertNumbersState.number = null;
                   });
@@ -389,13 +397,13 @@ class HomePageState extends State<HomePage> {
 
   Row oneRow() {
     return Row(
-      children: createButtons(),
       mainAxisAlignment: MainAxisAlignment.center,
+      children: createButtons(),
     );
   }
 
   List<Row> createRows() {
-    List<Row> rowList = new List<Row>.filled(9, null);
+    List<Row> rowList = List<Row>.filled(9, null);
     for (var i = 0; i <= 8; i++) {
       rowList[i] = oneRow();
     }
@@ -421,7 +429,7 @@ class HomePageState extends State<HomePage> {
         context: context,
         isScrollControlled: true,
         backgroundColor: Styles.secondaryBackgroundColor,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             top: Radius.circular(10),
           ),
@@ -436,7 +444,7 @@ class HomePageState extends State<HomePage> {
                 title: Text('Restart Game', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200), () => restartGame());
+                  Timer(const Duration(milliseconds: 200), () => restartGame());
                 },
               ),
               ListTile(
@@ -444,7 +452,7 @@ class HomePageState extends State<HomePage> {
                 title: Text('New Game', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200),
+                  Timer(const Duration(milliseconds: 200),
                       () => newGame(currentDifficultyLevel));
                 },
               ),
@@ -454,7 +462,8 @@ class HomePageState extends State<HomePage> {
                 title: Text('Show Solution', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200), () => showSolution());
+                  Timer(
+                      const Duration(milliseconds: 200), () => showSolution());
                 },
               ),
               ListTile(
@@ -464,17 +473,18 @@ class HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.pop(context);
                   Timer(
-                      Duration(milliseconds: 300),
+                      const Duration(milliseconds: 300),
                       () => showAnimatedDialog<void>(
                               animationType: DialogTransitionType.fadeScale,
                               barrierDismissible: true,
-                              duration: Duration(milliseconds: 350),
+                              duration: const Duration(milliseconds: 350),
                               context: outerContext,
                               builder: (_) => AlertDifficultyState(
                                   currentDifficultyLevel)).whenComplete(() {
                             if (AlertDifficultyState.difficulty != null) {
-                              Timer(Duration(milliseconds: 300), () {
-                                newGame(AlertDifficultyState.difficulty);
+                              Timer(const Duration(milliseconds: 300), () {
+                                newGame(
+                                    AlertDifficultyState.difficulty ?? 'test');
                                 currentDifficultyLevel =
                                     AlertDifficultyState.difficulty;
                                 AlertDifficultyState.difficulty = null;
@@ -490,7 +500,7 @@ class HomePageState extends State<HomePage> {
                 title: Text('Switch Theme', style: customStyle),
                 onTap: () {
                   Navigator.pop(context);
-                  Timer(Duration(milliseconds: 200), () {
+                  Timer(const Duration(milliseconds: 200), () {
                     changeTheme('switch');
                   });
                 },
@@ -502,16 +512,16 @@ class HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.pop(context);
                   Timer(
-                      Duration(milliseconds: 200),
+                      const Duration(milliseconds: 200),
                       () => showAnimatedDialog<void>(
                               animationType: DialogTransitionType.fadeScale,
                               barrierDismissible: true,
-                              duration: Duration(milliseconds: 350),
+                              duration: const Duration(milliseconds: 350),
                               context: outerContext,
                               builder: (_) => AlertAccentColorsState(
                                   currentAccentColor)).whenComplete(() {
                             if (AlertAccentColorsState.accentColor != null) {
-                              Timer(Duration(milliseconds: 300), () {
+                              Timer(const Duration(milliseconds: 300), () {
                                 currentAccentColor =
                                     AlertAccentColorsState.accentColor;
                                 changeAccentColor(
@@ -530,13 +540,13 @@ class HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.pop(context);
                   Timer(
-                      Duration(milliseconds: 200),
+                      const Duration(milliseconds: 200),
                       () => showAnimatedDialog<void>(
                           animationType: DialogTransitionType.fadeScale,
                           barrierDismissible: true,
-                          duration: Duration(milliseconds: 350),
+                          duration: const Duration(milliseconds: 350),
                           context: outerContext,
-                          builder: (_) => AlertAbout()));
+                          builder: (_) => const AlertAbout()));
                 },
               ),
             ],
@@ -546,7 +556,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(
+    return WillPopScope(
         onWillPop: () async {
           if (kIsWeb) {
             return false;
@@ -554,13 +564,13 @@ class HomePageState extends State<HomePage> {
             showAnimatedDialog<void>(
                 animationType: DialogTransitionType.fadeScale,
                 barrierDismissible: true,
-                duration: Duration(milliseconds: 350),
+                duration: const Duration(milliseconds: 350),
                 context: context,
-                builder: (_) => AlertExit());
+                builder: (_) => const AlertExit());
           }
           return true;
         },
-        child: new Scaffold(
+        child: Scaffold(
             backgroundColor: Styles.primaryBackgroundColor,
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(56.0),
@@ -569,27 +579,27 @@ class HomePageState extends State<HomePage> {
                         onDoubleTap: () => appWindow.maximizeOrRestore(),
                         child: AppBar(
                           centerTitle: true,
-                          title: Text('Sudoku'),
+                          title: const Text('Sudoku'),
                           backgroundColor: Styles.primaryColor,
                           actions: [
                             IconButton(
                               icon: const Icon(Icons.minimize_outlined),
-                              padding: EdgeInsets.fromLTRB(8, 0, 8, 15),
+                              padding: const EdgeInsets.fromLTRB(8, 0, 8, 15),
                               onPressed: () {
                                 appWindow.minimize();
                               },
                             ),
                             IconButton(
                               icon: const Icon(Icons.close_rounded),
-                              padding: EdgeInsets.fromLTRB(8, 8, 20, 8),
+                              padding: const EdgeInsets.fromLTRB(8, 8, 20, 8),
                               onPressed: () {
                                 showAnimatedDialog<void>(
                                     animationType:
                                         DialogTransitionType.fadeScale,
                                     barrierDismissible: true,
-                                    duration: Duration(milliseconds: 350),
+                                    duration: const Duration(milliseconds: 350),
                                     context: context,
-                                    builder: (_) => AlertExit());
+                                    builder: (_) => const AlertExit());
                               },
                             ),
                           ],
@@ -597,7 +607,7 @@ class HomePageState extends State<HomePage> {
                       )
                     : AppBar(
                         centerTitle: true,
-                        title: Text('Sudoku'),
+                        title: const Text('Sudoku'),
                         backgroundColor: Styles.primaryColor,
                       )),
             body: Builder(builder: (builder) {
@@ -612,7 +622,7 @@ class HomePageState extends State<HomePage> {
               foregroundColor: Styles.primaryBackgroundColor,
               backgroundColor: Styles.primaryColor,
               onPressed: () => showOptionModalSheet(context),
-              child: Icon(Icons.menu_rounded),
+              child: const Icon(Icons.menu_rounded),
             )));
   }
 }
