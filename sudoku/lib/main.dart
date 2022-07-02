@@ -8,7 +8,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
-import 'alerts.dart';
+import 'alerts/all.dart';
 import 'splash_screen_page.dart';
 import 'styles.dart';
 
