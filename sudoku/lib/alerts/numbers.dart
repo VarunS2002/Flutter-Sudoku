@@ -90,7 +90,7 @@ class AlertNumbers extends State<AlertNumbersState> {
       ),
       autofocus: true,
       onKey: (ev) {
-        if (!(ev is RawKeyUpEvent)) return;
+        if (ev is! RawKeyUpEvent) return;
         var key = ev.logicalKey;
         if (key == LogicalKeyboardKey.escape) Navigator.pop(context);
         else if (key == LogicalKeyboardKey.digit1) select(1);
