@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../styles.dart';
 
@@ -25,6 +26,13 @@ class AlertNumbers extends State<AlertNumbersState> {
   static final List<int> numberList2 = [4, 5, 6];
   static final List<int> numberList3 = [7, 8, 9];
 
+  void select(int numSelected) {
+    setState(() {
+      numberSelected = number = numSelected;
+      Navigator.pop(context);
+    });
+  }
+
   List<SizedBox> createButtons(List<int> numberList) {
     return <SizedBox>[
       for (int numbers in numberList)
@@ -32,13 +40,7 @@ class AlertNumbers extends State<AlertNumbersState> {
           width: 38,
           height: 38,
           child: TextButton(
-            onPressed: () => {
-              setState(() {
-                numberSelected = numbers;
-                number = numberSelected;
-                Navigator.pop(context);
-              })
-            },
+            onPressed: () => select(numbers),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                   Styles.secondaryBackgroundColor),
@@ -82,7 +84,26 @@ class AlertNumbers extends State<AlertNumbersState> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return RawKeyboardListener(
+      focusNode: FocusNode(
+        onKey: (_, __) => KeyEventResult.handled
+      ),
+      autofocus: true,
+      onKey: (ev) {
+        if (!(ev is RawKeyUpEvent)) return;
+        var key = ev.logicalKey;
+        if (key == LogicalKeyboardKey.escape) Navigator.pop(context);
+        else if (key == LogicalKeyboardKey.digit1) select(1);
+        else if (key == LogicalKeyboardKey.digit2) select(2);
+        else if (key == LogicalKeyboardKey.digit3) select(3);
+        else if (key == LogicalKeyboardKey.digit4) select(4);
+        else if (key == LogicalKeyboardKey.digit5) select(5);
+        else if (key == LogicalKeyboardKey.digit6) select(6);
+        else if (key == LogicalKeyboardKey.digit7) select(7);
+        else if (key == LogicalKeyboardKey.digit8) select(8);
+        else if (key == LogicalKeyboardKey.digit9) select(9);
+      },
+      child: AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: Styles.secondaryBackgroundColor,
         title: Center(
@@ -95,6 +116,6 @@ class AlertNumbers extends State<AlertNumbersState> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: createRows(),
-        ));
+        )));
   }
 }
